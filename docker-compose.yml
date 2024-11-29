@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  nginx_proxy:
+    depends_on:
+      client:
+        condition: service_completed_successfully
+      departmens:
+        condition: service_healthy
+      employees:
+        condition: service_healthy
+      ml-searcher:
+        condition: service_healthy
+      org-structure:
+        condition: service_healthy
+
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    volumes:
+      - ./client/dist:/usr/share/nginx/html
+      - ./images:/usr/share/nginx/images
+    ports:
+      - "443:443"
+
+
+  postgres_mts_hack:
+    image: postgres:13
+    env_file:
+      - ./.database.env
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - mts_network
+
+  backend-for-frontend:
+    build:
+      dockerfile: ./Dockerfile
+      context: ./backend-for-frontend
+    command: ["/app/scripts/app.sh"]
+    networks:
+      - mts_network
+
+  departmens:
+    build:
+      dockerfile: ./Dockerfile
+      context: ./departmens
+    command: [ "/app/scripts/app.sh" ]
+    networks:
+      - mts_network
+
+  employees:
+    build:
+      dockerfile: ./Dockerfile
+      context: ./employees
+    command: [ "/app/scripts/app.sh" ]
+    networks:
+      - mts_network
+
+  ml-searcher:
+    build:
+      dockerfile: ./Dockerfile
+      context: ./ml-searcher
+    command: [ "/app/scripts/app.sh" ]
+    networks:
+      - mts_network
+
+  org-structure:
+    build:
+      dockerfile: ./Dockerfile
+      context: ./org-structure
+    command: [ "/app/scripts/app.sh" ]
+    networks:
+      - mts_network
+
+volumes:
+  db_data:
+
+networks:
+  mts_network:
+    driver: bridge
