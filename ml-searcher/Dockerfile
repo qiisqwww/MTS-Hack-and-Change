@@ -1,5 +1,7 @@
 FROM python:3.12-alpine
 
+# Необходим для healthcheck
+RUN apk add --no-cache curl
 
 ENV PYTHONFAULTHANDLER=1 \
     PYTHONUNBUFFERED=1 \

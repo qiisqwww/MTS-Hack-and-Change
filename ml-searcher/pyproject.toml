@@ -4,7 +4,6 @@ version = "0.1.0"
 description = ""
 authors = ["qiisqwww <qiisqwww@gmail.com>"]
 readme = "README.md"
-packages = [{include = "ml_searcher"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"

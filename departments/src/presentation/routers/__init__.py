@@ -7,5 +7,5 @@ __all__ = [
 ]
 
 
-root_router = APIRouter()
+root_router = APIRouter(prefix="/api")
 root_router.include_router(healthcheck_router)

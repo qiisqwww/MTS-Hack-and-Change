@@ -3,9 +3,9 @@ version: '3.8'
 services:
   nginx_proxy:
     depends_on:
-      client:
-        condition: service_completed_successfully
-      departmens:
+#      client:
+#        condition: service_completed_successfully
+      departments:
         condition: service_healthy
       employees:
         condition: service_healthy
@@ -13,15 +13,18 @@ services:
         condition: service_healthy
       org-structure:
         condition: service_healthy
-
+      backend-for-frontend:
+        condition: service_healthy
     build:
       dockerfile: Dockerfile
       context: ./nginx
     volumes:
       - ./client/dist:/usr/share/nginx/html
-      - ./images:/usr/share/nginx/images
     ports:
       - "443:443"
+
+    networks:
+      - mts_network
 
 
   postgres_mts_hack:
@@ -30,22 +33,52 @@ services:
       - ./.database.env
     volumes:
       - db_data:/var/lib/postgresql/data
+    restart: always
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
     networks:
       - mts_network
+
 
   backend-for-frontend:
     build:
       dockerfile: ./Dockerfile
       context: ./backend-for-frontend
+    env_file:
+      - ./backend-for-frontend/.backend-for-frontend.env
+    depends_on:
+      postgres_mts_hack:
+        condition: service_healthy
     command: ["/app/scripts/app.sh"]
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:8080/api/healthcheck || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     networks:
       - mts_network
 
-  departmens:
+
+  departments:
     build:
       dockerfile: ./Dockerfile
-      context: ./departmens
+      context: departments
+    env_file:
+      - ./departments/.departments.env
+    depends_on:
+      postgres_mts_hack:
+        condition:
+          service_healthy
     command: [ "/app/scripts/app.sh" ]
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:8082/api/healthcheck || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     networks:
       - mts_network
 
@@ -53,7 +86,17 @@ services:
     build:
       dockerfile: ./Dockerfile
       context: ./employees
+    env_file:
+      - ./employees/.employees.env
+    depends_on:
+      postgres_mts_hack:
+        condition: service_healthy
     command: [ "/app/scripts/app.sh" ]
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:8083/api/healthcheck || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     networks:
       - mts_network
 
@@ -61,7 +104,17 @@ services:
     build:
       dockerfile: ./Dockerfile
       context: ./ml-searcher
+    env_file:
+      - ./ml-searcher/.ml-searcher.env
+    depends_on:
+      postgres_mts_hack:
+        condition: service_healthy
     command: [ "/app/scripts/app.sh" ]
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:8081/api/healthcheck || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     networks:
       - mts_network
 
@@ -69,7 +122,17 @@ services:
     build:
       dockerfile: ./Dockerfile
       context: ./org-structure
+    env_file:
+      - ./org-structure/.org-structure.env
+    depends_on:
+      postgres_mts_hack:
+        condition: service_healthy
     command: [ "/app/scripts/app.sh" ]
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:8084/api/healthcheck || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     networks:
       - mts_network
 

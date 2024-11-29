@@ -26,6 +26,3 @@ DB_PASS: str = StrEnv("DB_PASS")
 DB_NAME: str = StrEnv("DB_NAME")
 DB_HOST: str = StrEnv("DB_HOST")
 DB_PORT: int = IntEnv("DB_PORT")
-
-ACCESS_TOKEN_EXPIRE_DAYS: int = IntEnv("ACCESS_TOKEN_EXPIRE_DAYS")
-SECRET: str = StrEnv("SECRET")
