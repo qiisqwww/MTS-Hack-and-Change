@@ -4,14 +4,10 @@ version = "0.1.0"
 description = ""
 authors = ["qiisqwww <qiisqwww@gmail.com>"]
 readme = "README.md"
-packages = [{include = "ml_searcher"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"
 fastapi = {extras = ["all"], version = "^0.115.5"}
-sqlalchemy = "^2.0.36"
-alembic = "^1.14.0"
-asyncpg = "^0.30.0"
 
 
 [build-system]
