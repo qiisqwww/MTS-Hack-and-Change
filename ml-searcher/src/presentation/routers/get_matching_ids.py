@@ -5,7 +5,7 @@ from nltk.corpus import stopwords
 
 from src.text_preprocessor import process_records
 from src.text_preprocessor.main import process_prompt, find_matching_ids
-from src.text_preprocessor.models import InputData
+from src.presentation.schemas.models import InputData
 from fastapi import HTTPException
 
 import nltk
@@ -38,7 +38,7 @@ def find_users_endpoint(input_data: InputData):
         processed_prompt = process_prompt(input_data.prompt, lemmatizer, stop_words, translator)
 
         # Поиск совпадающих идентификаторов
-        matching_ids = find_matching_ids(processed_data, processed_prompt, 0.7)
+        matching_ids = find_matching_ids(processed_data, processed_prompt, input_data.threshold)
 
         return {"matching_ids": matching_ids}
     except Exception as e:
