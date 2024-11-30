@@ -1,7 +1,6 @@
 .logo {
   display: flex;
   align-items: center;
-  margin-top: 23px;
   height: 35px;
 }
 
@@ -16,4 +15,12 @@
   font-weight: 500;
   color: #1d2023;
   font-size: 17px;
+}
+
+.section {
+  margin-top: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100% - 40px);
 }

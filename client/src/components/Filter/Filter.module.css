@@ -15,3 +15,21 @@
   font-family: "MTS Text";
   font-weight: 300;
 }
+
+.input {
+  box-sizing: border-box;
+  background-color: #fff;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px #ccc solid;
+  width: 100%;
+  height: 25px;
+  font-family: "MTS Text";
+  font-weight: 300;
+}
+
+.select {
+  width: 100%;
+  font-family: "MTS Text";
+  font-weight: 300;
+}

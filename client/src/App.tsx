@@ -3,9 +3,10 @@ import "./App.css";
 import Footer from "./components/Footer/Footer";
 import Layout from "./components/Layout/Layout";
 import LeftBoard from "./components/LeftBoard/LeftBoard";
-import { Popover } from "antd";
+import { ConfigProvider, Popover } from "antd";
 import { useState } from "react";
 import { MPopup } from "./components/Popup/Popup";
+// import { useTheme } from "./hooks/useTheme";
 
 const content = (
   <div style={{ padding: 10 }}>
@@ -40,9 +41,21 @@ export const animatePopup = {
 
 function App() {
   const [popup, setPopup] = useState(false);
+  // const { theme, setTheme } = useTheme();
 
   return (
-    <>
+    <ConfigProvider
+      theme={{
+        components: {
+          Switch: {
+            handleSize: 25,
+            trackPadding: 3,
+            trackHeight: 31,
+            trackMinWidth: 71,
+          },
+        },
+      }}
+    >
       {popup && (
         <MPopup
           setPopup={setPopup}
@@ -62,7 +75,7 @@ function App() {
         </div>
       </main>
       <Footer />
-    </>
+    </ConfigProvider>
   );
 }
 

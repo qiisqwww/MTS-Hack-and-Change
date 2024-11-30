@@ -325,3 +325,33 @@ input {
 .ant-pagination-item-active a {
   color: #ff0023 !important; /* Цвет текста в активной кнопке */
 }
+
+.ant-switch-handle {
+  width: 25px !important;
+  height: 25px !important;
+  inset-inline-start: 4px;
+  /* inset-inline-end: 70px !important; */
+}
+
+.ant-switch-handle::before {
+  background-color: #ff0023 !important;
+  /* width: 25px;
+  height: 25px;
+  border-radius: 100% !important; */
+}
+
+.ant-switch {
+  background-color: #fff !important; /* Цвет выключенного фона */
+}
+
+.ant-switch-checked {
+  background-color: #1d2023 !important; /* Цвет фона во включенном состоянии */
+}
+
+html[data-theme="dark"] {
+  --background-color: #1d2023;
+}
+
+html[data-theme="light"] {
+  --background-color: #fff;
+}
