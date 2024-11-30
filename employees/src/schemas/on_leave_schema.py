@@ -8,7 +8,6 @@ __all__ = [
 
 
 class OnLeaveSchema(BaseModel):
-    employee_id: int
     date_from: date
     date_to: date
 

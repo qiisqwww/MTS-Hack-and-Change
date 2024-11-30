@@ -16,4 +16,4 @@ class OnLeave(Base):
     date_from = Column(Date, nullable=False)
     date_to = Column(Date, nullable=False)
 
-    employee = relationship("Employee", back_populates="leaves")
+    employee = relationship("Employee", back_populates="leaves", uselist=False)

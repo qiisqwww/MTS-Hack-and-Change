@@ -30,5 +30,5 @@ class Employee(Base):
 
     post = relationship("Post", back_populates="employees")
     department = relationship("Department", back_populates="employees")
-    sick_leaves = relationship("OnSickLeave", back_populates="employee", cascade="all, delete-orphan")
-    leaves = relationship("OnLeave", back_populates="employee", cascade="all, delete-orphan")
+    sick_leaves = relationship("OnSickLeave", back_populates="employee", cascade="all, delete-orphan", uselist=False)
+    leaves = relationship("OnLeave", back_populates="employee", cascade="all, delete-orphan", uselist=False)

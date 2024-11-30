@@ -6,13 +6,13 @@ __all__ = [
 
 
 class FiltersQuerySchema(BaseModel):
-    department_id: int
-    post_id: int
-    role_id: int
-    first_name: str
-    last_name: str
-    phone_number: str
-    city: str
-    address: str
-    email: EmailStr
-    tg_username: str
+    department_id: int | None
+    post_id: int | None
+    role_id: int | None
+    first_name: str | None
+    last_name: str | None
+    phone_number: str | None
+    city: str | None
+    address: str | None
+    email: EmailStr | None
+    tg_username: str | None

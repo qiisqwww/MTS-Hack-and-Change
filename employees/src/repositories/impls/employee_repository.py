@@ -19,13 +19,13 @@ class EmployeeRepository(Repository, IEmployeeRepository):
         super().__init__(session)
         self._model = Employee
 
-    async def insert_employee(self, employee: EmployeeInputSchema) -> EmployeeSchema:
+    async def insert_employee(self, employee: EmployeeInputSchema) -> Employee:
         pass
 
-    async def get_employee_by_id(self, employee_id: int) -> EmployeeSchema | None:
+    async def get_employee_by_id(self, employee_id: int) -> Employee | None:
         pass
 
-    async def get_employee_by_filters(self, filters: FiltersQuerySchema) -> list[EmployeeSchema]:
+    async def get_employee_by_filters(self, filters: FiltersQuerySchema) -> list[Employee]:
         stmt = (
             select(self._model)
             .join(self._model.post)

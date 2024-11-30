@@ -15,4 +15,5 @@ class Post(Base):
     name = Column(String, nullable=False)
     role_id = Column(Integer, ForeignKey('roles.id'), nullable=False)
 
+    employees = relationship("Employee", back_populates="post")
     role = relationship("Role", back_populates="posts")
