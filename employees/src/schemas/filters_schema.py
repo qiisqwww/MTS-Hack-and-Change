@@ -6,14 +6,15 @@ __all__ = [
 
 
 class FilterSchema(BaseModel):
-    department_ids: list[int] | None
-    functional_block_id: int | None
-    post_id: int | None
-    role: int | None
+    departments_id: list[str] | None
+    post_id: str | None
+    role_id: int | None
     first_name: str | None
     middle_name: str | None
     last_name: str | None
     phone_number: str | None
+    email: str | None
+    tg_username: str | None
     city: str | None
     address: str | None
-    email: str | None
+
