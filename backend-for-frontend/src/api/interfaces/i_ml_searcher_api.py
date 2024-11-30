@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+from src.schemas.employee_temp_schema import EmployeeTempSchema
+
 __all__ = [
     "IMLSearcherApi"
 ]
@@ -7,5 +9,5 @@ __all__ = [
 
 class IMLSearcherApi(ABC):
     @abstractmethod
-    async def filter_by_prompt(self, prompt: str, employees: list) -> list[int]:
+    async def filter_by_prompt(self, employees: list[EmployeeTempSchema], prompt: str) -> list[int]:
         ...

@@ -34,3 +34,8 @@ class PostRepository(Repository, IPostRepository):
     async def insert_prefill_posts(self, posts: list[Post]) -> None:
         self._session.add_all(posts)
         await self._session.commit()
+
+    async def get_post_by_id(self, post_id: int) -> Post | None:
+        stmt = select(self._model).where(self._model.id == post_id)
+
+        return await self._session.scalar(stmt)

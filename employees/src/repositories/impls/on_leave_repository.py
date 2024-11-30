@@ -1,4 +1,5 @@
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
 
 from src.repositories.repository import Repository
 from src.repositories.interfaces import IOnLeaveRepository
@@ -21,4 +22,13 @@ class OnLeaveRepository(Repository, IOnLeaveRepository):
         pass
 
     async def get_on_leave(self, employee_id: int) -> OnLeaveSchema | None:
-        pass
+        stmt = select(self._model).where(self._model.employee_id == employee_id)
+        on_leave = await self._session.scalar(stmt)
+
+        if on_leave is None:
+            return None
+
+        return await OnLeaveSchema(
+            date_from=on_leave.date_from,
+            date_to=on_leave.date_to
+        )

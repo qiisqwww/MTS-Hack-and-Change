@@ -32,3 +32,8 @@ class DepartmentRepository(Repository, IDepartmentRepository):
     async def insert_prefill_departments(self, departments: list[Department]) -> None:
         self._session.add_all(departments)
         await self._session.commit()
+
+    async def get_department_by_id(self, department_id: int) -> Department:
+        stmt = select(self._model).where(self._model.id == department_id)
+
+        return await self._session.scalar(stmt)

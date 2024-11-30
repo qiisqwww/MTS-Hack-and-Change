@@ -15,3 +15,7 @@ class IEmployeesAPI(ABC):
     @abstractmethod
     async def get_all_data(self) -> dict:
         ...
+
+    @abstractmethod
+    async def find_employee_by_id(self, boss_id: int) -> dict:
+        ...
