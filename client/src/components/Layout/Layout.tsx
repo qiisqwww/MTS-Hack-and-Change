@@ -3,10 +3,29 @@ import Input from "../Input/Input";
 import styles from "./Layout.module.css";
 import Card from "../Card/Card";
 import { motion } from "motion/react";
+import { List } from "antd";
 
 interface layoutProps {
   setPopup: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+const data = [
+  {
+    title: "title",
+  },
+  {
+    title: "title",
+  },
+  {
+    title: "title",
+  },
+  {
+    title: "title",
+  },
+  {
+    title: "title",
+  },
+];
 
 export const animation = {
   hidden: {
@@ -35,11 +54,17 @@ export default function Layout({ setPopup }: layoutProps) {
       <Input isSearch={isSearch} setIsSearch={setIsSearch} />
       {isSearch && (
         <motion.div initial="hidden" animate="visiable" variants={animation}>
-          <Card setPopup={setPopup} />
-          <Card setPopup={setPopup} />
-          <Card setPopup={setPopup} />
-          <Card setPopup={setPopup} />
-          <Card setPopup={setPopup} />
+          <List
+            className={styles.list}
+            pagination={{ pageSize: 3, align: "center" }}
+            dataSource={data}
+            split={false}
+            renderItem={(item) => (
+              <List.Item key={item.title}>
+                <Card setPopup={setPopup} />
+              </List.Item>
+            )}
+          ></List>
         </motion.div>
       )}
     </section>

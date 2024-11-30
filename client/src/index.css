@@ -317,3 +317,11 @@
 input {
   all: unset; /* Сбрасывает все стили по умолчанию */
 }
+
+.ant-pagination-item-active {
+  border-color: #ff0023 !important;
+}
+
+.ant-pagination-item-active a {
+  color: #ff0023 !important; /* Цвет текста в активной кнопке */
+}
