@@ -1,0 +1,2 @@
+from .i_post_repository import IPostRepository
+from .i_role_repository import IRoleRepository

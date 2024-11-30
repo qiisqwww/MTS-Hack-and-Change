@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, Date, Boolean
+from sqlalchemy import Column, String, Integer, Date, Boolean, ForeignKey
 
 from src.entities.declarative_base import Base
 
@@ -26,3 +26,4 @@ class Employee(Base):
     address = Column(String)
     is_on_sick_leave = Column(Boolean, nullable=False, default=False)
     is_on_leave = Column(Boolean, nullable=False, default=False)
+    boss_id = Column(Integer, ForeignKey('employees.id'))
