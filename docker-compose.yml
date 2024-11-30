@@ -28,7 +28,6 @@ services:
       context: ./backend-for-frontend
     env_file:
       - ./backend-for-frontend/.backend-for-frontend.env
-    command: ["/app/scripts/app.sh"]
     healthcheck:
       test: [ "CMD-SHELL", "curl -f http://localhost:8080/api/healthcheck || exit 1" ]
       interval: 10s
@@ -46,7 +45,6 @@ services:
     depends_on:
       postgres_employees:
         condition: service_healthy
-    command: [ "/app/scripts/app.sh" ]
     volumes:
       - ./employees/alembic/versions:/app/alembic/versions
     healthcheck:
@@ -78,7 +76,6 @@ services:
       context: ./ml-searcher
     env_file:
       - ./ml-searcher/.ml-searcher.env
-    command: [ "/app/scripts/app.sh" ]
     healthcheck:
       test: [ "CMD-SHELL", "curl -f http://localhost:8081/api/healthcheck || exit 1" ]
       interval: 10s

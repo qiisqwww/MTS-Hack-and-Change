@@ -15,10 +15,9 @@ RUN pip install "poetry==$POETRY_VERSION"
 
 WORKDIR /app
 
-# Установка используемых библиотек
 COPY poetry.lock pyproject.toml /app/
 RUN poetry config virtualenvs.create false && poetry install --no-dev --no-interaction --no-ansi
 
-# Копирование необходимых для работы приложения файлов
 COPY src /app/src
-COPY scripts/app.sh /app/scripts/app.sh
+
+CMD ["python", "-m", "src"]
