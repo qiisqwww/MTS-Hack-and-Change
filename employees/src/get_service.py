@@ -13,12 +13,12 @@ from src.services import EmployeesService, OrganizationService
 from src.database import get_async_session
 
 __all__ = [
-    "get_employees_info_service",
+    "get_employees_service",
     "get_organization_service"
 ]
 
 
-async def get_employees_info_service(session: AsyncSession = Depends(get_async_session)) -> EmployeesService:
+async def get_employees_service(session: AsyncSession = Depends(get_async_session)) -> EmployeesService:
     return EmployeesService(
         EmployeeRepository(session),
         OnLeaveRepository(session),

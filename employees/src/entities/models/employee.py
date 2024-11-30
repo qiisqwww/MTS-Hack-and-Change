@@ -1,4 +1,5 @@
 from sqlalchemy import Column, String, Integer, Date, Boolean, ForeignKey
+from sqlalchemy.orm import relationship
 
 from src.entities.declarative_base import Base
 
@@ -26,3 +27,8 @@ class Employee(Base):
     is_on_sick_leave = Column(Boolean, nullable=False, default=False)
     is_on_leave = Column(Boolean, nullable=False, default=False)
     boss_id = Column(Integer, ForeignKey('employees.id'))
+
+    post = relationship("Post", back_populates="employees")
+    department = relationship("Department", back_populates="employees")
+    sick_leaves = relationship("OnSickLeave", back_populates="employee", cascade="all, delete-orphan")
+    leaves = relationship("OnLeave", back_populates="employee", cascade="all, delete-orphan")

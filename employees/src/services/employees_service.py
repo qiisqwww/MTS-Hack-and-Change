@@ -6,7 +6,7 @@ from src.repositories.interfaces import (
     IPostRepository,
     IDepartmentRepository
 )
-from src.schemas import EmployeeReturnSchema, EmployeeInputSchema, FilterSchema
+from src.schemas import EmployeeReturnSchema, EmployeeInputSchema, FiltersSchema, FiltersQuerySchema
 
 
 class EmployeesService:
@@ -36,5 +36,25 @@ class EmployeesService:
     async def add_new_employee(self, employee_input: EmployeeInputSchema) -> EmployeeReturnSchema:
         ...
 
-    async def filter_employees_by_parameters(self) -> list[EmployeeReturnSchema]:
-        ...
+    async def filter_employees_by_parameters(self, filters: FiltersSchema) -> list[EmployeeReturnSchema]:
+        role, post, department = None, None, None
+
+        if filters.role:
+            role = await self._role_repository.get_role_by_name(filters.role)
+        if filters.post:
+            post = await self._post_repository.get_post_by_name(filters.post)
+        if filters.department_name:
+            department = await self._department_repository.get_department_by_name(filters.department_name)
+
+        filters_for_query = FiltersQuerySchema(
+            department_id=department.id if department else None,
+            post_id=post.id if post else None,
+            role_id=role.id if role else None,
+            first_name=filters.first_name,
+            last_name=filters.last_name,
+            phone_number=filters.phone_number,
+            city=filters.city,
+            address=filters.address,
+            email=filters.email,
+            tg_username=filters.tg_username
+        )

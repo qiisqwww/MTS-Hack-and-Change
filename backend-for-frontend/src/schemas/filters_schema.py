@@ -6,14 +6,13 @@ __all__ = [
 
 
 class FiltersSchema(BaseModel):
-    departments: list[str] | None
+    department_name: str | None
     post: str | None
     role: str | None
     first_name: str | None
-    middle_name: str | None
     last_name: str | None
     phone_number: str | None
     city: str | None
     address: str | None
     email: str | None
-    prompt: str | None
+    tg_username: str | None

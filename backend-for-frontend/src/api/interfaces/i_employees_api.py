@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from src.schemas import EmployeesFiltersSchema
+from src.schemas import FiltersSchema
 
 __all__ = [
     "IEmployeesAPI"
@@ -9,7 +9,7 @@ __all__ = [
 
 class IEmployeesAPI(ABC):
     @abstractmethod
-    async def find_employees_by_filters(self, filters: EmployeesFiltersSchema) -> list[int]:
+    async def find_employees_by_filters(self, filters: FiltersSchema) -> list[int]:
         ...
 
     @abstractmethod

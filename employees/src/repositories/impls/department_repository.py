@@ -21,3 +21,7 @@ class DepartmentRepository(Repository, IDepartmentRepository):
     async def get_all_departments(self) -> list[DepartmentSchema]:
         stmt = select(self._model)
         return [DepartmentSchema.from_orm(department) for department in await self._session.scalars(stmt)]
+
+    async def get_department_by_name(self, department_name: str) -> DepartmentSchema:
+        stmt = select(self._model).where(self._model.name == department_name)
+        return DepartmentSchema.from_orm(await self._session.scalar(stmt))

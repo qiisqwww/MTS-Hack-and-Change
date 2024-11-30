@@ -13,7 +13,6 @@ __all__ = [
 
 class EmployeeReturnSchema(BaseModel):
     post_id: int
-    functional_block_id: int
     department_id: int
     first_name: str
     middle_name: str
