@@ -25,7 +25,7 @@ translator = GoogleTranslator(source='auto', target='ru')
 
 app = APIRouter()
 
-@app.post("/find-users")
+@app.post("/filter")
 def find_users_endpoint(input_data: InputData):
     try:
         # Преобразование входных данных
