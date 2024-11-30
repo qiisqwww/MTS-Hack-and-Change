@@ -1,8 +1,24 @@
+import { useEffect } from "react";
 import Filter from "../Filter/Filter";
 import Title from "../Title/Title";
 import styles from "./Filters.module.css";
+import axios, { AxiosError } from "axios";
 
 export default function Filters() {
+  const loadFilters = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/info`);
+      console.log(response.data);
+    } catch (error: unknown) {
+      const e = error as AxiosError;
+      console.error(e);
+    }
+  };
+
+  useEffect(() => {
+    loadFilters();
+  }, []);
+
   return (
     <div className={styles.filters}>
       <Title title="КРИТЕРИИ ПОИСКА" />
