@@ -1,0 +1,11 @@
+.layout {
+  margin: auto;
+  width: 768px;
+}
+
+.title {
+  font-family: "MTS Extended";
+  font-weight: bold;
+  text-align: center;
+  font-size: 30px;
+}

@@ -1,0 +1,9 @@
+.filters {
+  width: calc(100% - 40px);
+  margin-top: 35px;
+}
+
+.list {
+  margin-top: 40px;
+  padding: 0;
+}
