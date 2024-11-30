@@ -1,5 +1,5 @@
 from src.api.interfaces import IEmployeesAPI, IMLSearcherApi
-from src.schemas import FiltersSchema
+from src.schemas import FiltersSchema, EmployeeTempSchema
 
 
 __all__ = [
@@ -20,8 +20,10 @@ class SubServicesManagerService:
 
         return all_data
 
-    async def filter_employees(self, filters: FiltersSchema, prompt: str | None) -> dict:
-        filtered_employees = await self._employees_api.find_employees_by_filters(filters)
+    async def filter_employees(self, filters: FiltersSchema, prompt: str | None) -> list[EmployeeTempSchema]:
+        filtered_employees_raw = await self._employees_api.find_employees_by_filters(filters)
+
+        filtered_employees = [EmployeeTempSchema(**emp) for emp in filtered_employees_raw["filtered_employees"]]
 
         if prompt is not None:
             pass
