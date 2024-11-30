@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, Date, ForeignKey
+from sqlalchemy.orm import relationship
 
 from src.entities.declarative_base import Base
 
@@ -14,3 +15,5 @@ class OnLeave(Base):
     employee_id = Column(Integer, ForeignKey('employees.id'), nullable=False)
     date_from = Column(Date, nullable=False)
     date_to = Column(Date, nullable=False)
+
+    employee = relationship("Employee", back_populates="leaves", uselist=False)

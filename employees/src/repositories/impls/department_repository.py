@@ -20,4 +20,11 @@ class DepartmentRepository(Repository, IDepartmentRepository):
 
     async def get_all_departments(self) -> list[DepartmentSchema]:
         stmt = select(self._model)
-        return [DepartmentSchema.from_orm(department) for department in await self._session.scalars(stmt)]
+        return [DepartmentSchema.from_orm(department)
+                for department in await self._session.scalars(stmt) if department is not None]
+
+    async def get_department_by_name(self, department_name: str) -> DepartmentSchema | None:
+        stmt = select(self._model).where(self._model.name == department_name)
+        department = await self._session.scalar(stmt)
+
+        return DepartmentSchema.from_orm(department) if department is not None else None

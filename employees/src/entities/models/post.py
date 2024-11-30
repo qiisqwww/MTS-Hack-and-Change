@@ -1,4 +1,5 @@
 from sqlalchemy import Integer, String, Column, ForeignKey
+from sqlalchemy.orm import relationship
 
 from src.entities.declarative_base import Base
 
@@ -13,3 +14,6 @@ class Post(Base):
     id = Column(Integer, primary_key=True, nullable=False, unique=True)
     name = Column(String, nullable=False)
     role_id = Column(Integer, ForeignKey('roles.id'), nullable=False)
+
+    employees = relationship("Employee", back_populates="post")
+    role = relationship("Role", back_populates="posts")

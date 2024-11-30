@@ -6,7 +6,14 @@ from src.repositories.interfaces import (
     IPostRepository,
     IDepartmentRepository
 )
-from src.schemas import EmployeeReturnSchema, EmployeeInputSchema, FilterSchema
+from src.schemas import (
+    EmployeeReturnSchema,
+    EmployeeInputSchema,
+    FiltersSchema,
+    FiltersQuerySchema,
+    OnLeaveSchema,
+    OnSickLeaveSchema
+)
 
 
 class EmployeesService:
@@ -36,5 +43,62 @@ class EmployeesService:
     async def add_new_employee(self, employee_input: EmployeeInputSchema) -> EmployeeReturnSchema:
         ...
 
-    async def filter_employees_by_parameters(self) -> list[EmployeeReturnSchema]:
-        ...
+    async def filter_employees_by_parameters(self, filters: FiltersSchema) -> list[EmployeeReturnSchema]:
+        role, post, department = None, None, None
+
+        if filters.role:
+            role = await self._role_repository.get_role_by_name(filters.role)
+        if filters.post:
+            post = await self._post_repository.get_post_by_name(filters.post)
+        if filters.department_name:
+            department = await self._department_repository.get_department_by_name(filters.department_name)
+
+        filters_for_query = FiltersQuerySchema(
+            department_id=department.id if department else None,
+            post_id=post.id if post else None,
+            role_id=role.id if role else None,
+            first_name=filters.first_name,
+            last_name=filters.last_name,
+            phone_number=filters.phone_number,
+            city=filters.city,
+            address=filters.address,
+            email=filters.email,
+            tg_username=filters.tg_username
+        )
+
+        employees = await self._employee_repository.get_employee_by_filters(filters_for_query)
+
+        employees_schema = []
+        for employee in employees:
+            on_sick_leave, on_leave = None, None
+            if employee.sick_leaves:
+                on_sick_leave = OnSickLeaveSchema(
+                    date_from=employee.sick_leaves.date_from,
+                    date_to=employee.leaves.date_to
+                )
+
+            if employee.leaves:
+                on_leave = OnLeaveSchema(
+                    date_from=employee.leaves.date_from,
+                    date_to=employee.leaves.date_to
+                )
+
+            employees_schema.append(EmployeeReturnSchema(
+                post=employee.post.name,
+                department_path=employee.department.path,
+                first_name=employee.first_name,
+                middle_name=employee.middle_name,
+                last_name=employee.last_name,
+                birthdate=employee.birthdate,
+                sex=employee.sex,
+                phone_number=employee.phone_number,
+                city=employee.city,
+                address=employee.address,
+                tg_username=employee.tg_username,
+                email=employee.email,
+                on_sick_leave_info=on_sick_leave,
+                on_leave_info=on_leave,
+                boss_id=employee.boss_id
+            ))
+
+        return employees_schema

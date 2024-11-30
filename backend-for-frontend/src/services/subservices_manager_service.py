@@ -20,5 +20,11 @@ class SubServicesManagerService:
 
         return all_data
 
-    async def filter_employees(self, filters: FiltersSchema) -> dict:
-        ...
+    async def filter_employees(self, filters: FiltersSchema, prompt: str | None) -> dict:
+        filtered_employees = await self._employees_api.find_employees_by_filters(filters)
+
+        if prompt is not None:
+            pass
+
+        print(filtered_employees)
+        return filtered_employees
