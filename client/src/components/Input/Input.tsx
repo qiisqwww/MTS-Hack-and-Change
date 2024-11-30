@@ -1,9 +1,22 @@
 import styles from "./Input.module.css";
 
-export default function Input() {
+interface InputProps {
+  isSearch: boolean;
+  setIsSearch: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function Input({ isSearch, setIsSearch }: InputProps) {
+  const handleSearch = () => {
+    setIsSearch(true);
+  };
+
   return (
-    <div className={styles.border}>
-      <input className={styles.input}></input>
+    <div
+      className={`${styles.border} ${isSearch ? styles.borderOnSearch : " "}`}
+    >
+      <input
+        className={`${styles.input} ${isSearch ? styles.inputOnSearch : " "}`}
+      ></input>
       <div className={styles.bottom}>
         <button className={styles.button}>
           <svg
@@ -21,7 +34,12 @@ export default function Input() {
             />
           </svg>
         </button>
-        <button className={styles.button + " " + styles.submit}>
+        <button
+          className={`${styles.button} ${styles.submit} ${
+            isSearch ? styles.submitPushed : ""
+          }`}
+          onClick={handleSearch}
+        >
           <svg
             width="14"
             height="16"

@@ -1,0 +1,105 @@
+.card {
+  margin-bottom: 20px;
+  border: 1px #969fa8 solid;
+  border-radius: 36px;
+  padding: 25px;
+  width: 911px;
+}
+
+.displayFlex {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 132px 1fr;
+  grid-template-rows: 45px;
+  height: 45px;
+  margin-top: 19px;
+  align-items: center;
+}
+
+.text {
+  margin-right: 28px;
+  font-family: "MTS Text";
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.point {
+  color: #969fa8;
+  font-family: "MTS Text";
+  font-weight: 300;
+  margin: 0;
+  font-size: 14px;
+}
+
+.icon {
+  width: 96px;
+  height: 96px;
+  margin-right: 36px;
+}
+
+.line {
+  margin: 0;
+}
+
+.name {
+  font-family: "MTS Wide";
+  font-weight: bold;
+  margin: 0;
+  font-size: 18px;
+}
+
+.age {
+  margin: 0;
+  font-family: "MTS Text";
+  font-weight: 300;
+  font-size: 14px;
+  margin: 14px 0;
+}
+
+.job {
+  background-color: #a6d3ff;
+  padding: 4px 16px;
+  border-radius: 8px;
+  color: #0070ff;
+  font-family: "MTS Text";
+  font-weight: 300;
+  margin-right: 20px;
+}
+
+.job p,
+.role p {
+  margin: 0;
+}
+
+.role {
+  padding: 4px 16px;
+  border: 1px solid #a6d3ff;
+  border-radius: 8px;
+  font-family: "MTS Text";
+  font-weight: 300;
+  color: #0070ff;
+}
+
+.button {
+  transition: background-color 0.3s;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 223px;
+  height: 44px;
+  background-color: #1d2023;
+  border-radius: 12px;
+  color: #fff;
+  font-family: "MTS Wide";
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #1d2023d8;
+}

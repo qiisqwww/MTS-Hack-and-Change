@@ -1,11 +1,32 @@
 .layout {
+  transition: margin-top 1s, transform 1s;
   margin: auto;
-  width: 768px;
+  width: 911px;
+  margin-top: 50%;
+  transform: translateY(-50%);
 }
 
 .title {
+  position: relative;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 0.5s, height 0.5s, margin-bottom 0.5s;
   font-family: "MTS Extended";
   font-weight: bold;
   text-align: center;
   font-size: 30px;
+  height: 36px;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.hideTitle {
+  opacity: 0;
+  height: 0;
+  margin-bottom: 0;
+}
+
+.search {
+  margin-top: 15px;
+  transform: translateY(0%);
 }
