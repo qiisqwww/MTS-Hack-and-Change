@@ -3,12 +3,7 @@ from .config import (
     DOCS_URL,
     OPENAPI_URL,
     HTTP_HOST,
-    HTTP_PORT,
-    DB_PORT,
-    DB_PASS,
-    DB_NAME,
-    DB_HOST,
-    DB_USER
+    HTTP_PORT
 )
 
 __all__ = [
@@ -16,10 +11,5 @@ __all__ = [
     "DOCS_URL",
     "OPENAPI_URL",
     "HTTP_HOST",
-    "HTTP_PORT",
-    "DB_HOST",
-    "DB_USER",
-    "DB_PASS",
-    "DB_NAME",
-    "DB_PORT"
+    "HTTP_PORT"
 ]
