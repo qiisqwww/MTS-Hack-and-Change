@@ -1,11 +1,12 @@
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import aliased
 from sqlalchemy import select, and_
 
 from src.repositories.repository import Repository
 from src.repositories.interfaces import IEmployeeRepository
 from src.entities.models import Employee
 from src.schemas import FiltersQuerySchema
-from src.entities.models import Post, OnLeave, OnSickLeave
+from src.entities.models import Post, OnLeave, OnSickLeave, Department
 
 __all__ = [
     "EmployeeRepository"
@@ -23,11 +24,13 @@ class EmployeeRepository(Repository, IEmployeeRepository):
         pass
 
     async def get_employee_by_filters(self, filters: FiltersQuerySchema) -> list[Employee]:
+        department_alias = aliased(Department)
+
         stmt = (
             select(self._model)
             .join(self._model.post)
             .join(Post.role)
-            .join(self._model.department)
+            .join(department_alias, self._model.department_id == department_alias.id)
             .outerjoin(OnLeave, OnLeave.employee_id == self._model.id)
             .outerjoin(OnSickLeave, OnSickLeave.employee_id == self._model.id)
         )
@@ -38,7 +41,12 @@ class EmployeeRepository(Repository, IEmployeeRepository):
         if filters.role_id:
             conditions.append(Post.role_id == filters.role_id)
         if filters.department_id:
-            conditions.append(self._model.department_id == filters.department_id)
+            conditions.append(
+                (department_alias.path.like(f"%/{filters.department_id}/%")) |
+                (department_alias.path.like(f"{filters.department_id}/%")) |
+                (department_alias.path.like(f"%/{filters.department_id}")) |
+                (self._model.department_id == filters.department_id)
+            )
 
         for field, value in filters.dict().items():
             if field in ('post_id', 'role_id', 'department_id'):
