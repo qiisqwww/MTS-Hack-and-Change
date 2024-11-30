@@ -65,7 +65,7 @@ services:
   postgres_departments:
     image: postgres:13
     env_file:
-      - ./.database.env/.database.departments.env
+      - ./.database.env
     volumes:
       - db_departments_data:/var/lib/postgresql/data
     restart: always
@@ -100,7 +100,7 @@ services:
   postgres_employees:
     image: postgres:13
     env_file:
-      - ./.database.env/.database.employees.env
+      - ./.database.env
     volumes:
       - db_employees_data:/var/lib/postgresql/data
     restart: always
@@ -150,7 +150,7 @@ services:
   postgres_org-structure:
     image: postgres:13
     env_file:
-      - ./.database.env/.database.org-structure.env
+      - ./.database.env
     volumes:
       - db_org-structure_data:/var/lib/postgresql/data
     restart: always
