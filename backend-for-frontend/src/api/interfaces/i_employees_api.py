@@ -9,5 +9,9 @@ __all__ = [
 
 class IEmployeesAPI(ABC):
     @abstractmethod
-    async def find_employees_by_filters(self, filters: EmployeesFiltersSchema) -> list[int]:  # [post_id, role_id]
+    async def find_employees_by_filters(self, filters: EmployeesFiltersSchema) -> list[int]:
+        ...
+
+    @abstractmethod
+    async def get_all_data(self) -> dict:
         ...

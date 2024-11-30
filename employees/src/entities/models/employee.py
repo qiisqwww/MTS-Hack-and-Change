@@ -11,9 +11,8 @@ class Employee(Base):
     __tablename__ = 'employees'
 
     id = Column(Integer, primary_key=True, unique=True, nullable=False)
-    post_id = Column(Integer, nullable=False)
-    functional_blocks_id = Column(Integer, nullable=False)
-    department_id = Column(Integer, nullable=False)
+    post_id = Column(Integer, ForeignKey('posts.id'), nullable=False)
+    department_id = Column(Integer, ForeignKey('departments.id'), nullable=False)
     first_name = Column(String(length=100), nullable=False)
     middle_name = Column(String(length=100), nullable=False)
     last_name = Column(String(length=100), nullable=False)

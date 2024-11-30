@@ -1,5 +1,5 @@
 from src.services import SubServicesManagerService
-from src.api.impls import DepartmentsApi, EmployeesAPI, MLSearcherApi, OrgStructureAPI
+from src.api.impls import EmployeesAPI, MLSearcherApi
 
 __all__ = [
     "get_sub_services_manager_service",
@@ -8,8 +8,6 @@ __all__ = [
 
 async def get_sub_services_manager_service() -> SubServicesManagerService:
     return SubServicesManagerService(
-        DepartmentsApi(),
         EmployeesAPI(),
-        MLSearcherApi(),
-        OrgStructureAPI()
+        MLSearcherApi()
     )
