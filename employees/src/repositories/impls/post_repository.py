@@ -30,3 +30,7 @@ class PostRepository(Repository, IPostRepository):
             return None
 
         return PostSchema.from_orm(post)
+
+    async def insert_prefill_posts(self, posts: list[Post]) -> None:
+        self._session.add_all(posts)
+        await self._session.commit()

@@ -4,7 +4,7 @@ from sqlalchemy import select, and_
 from src.repositories.repository import Repository
 from src.repositories.interfaces import IEmployeeRepository
 from src.entities.models import Employee
-from src.schemas import EmployeeSchema, EmployeeInputSchema, FiltersQuerySchema
+from src.schemas import FiltersQuerySchema
 from src.entities.models import Post, OnLeave, OnSickLeave
 
 __all__ = [
@@ -18,9 +18,6 @@ class EmployeeRepository(Repository, IEmployeeRepository):
     def __init__(self, session: AsyncSession) -> None:
         super().__init__(session)
         self._model = Employee
-
-    async def insert_employee(self, employee: EmployeeInputSchema) -> Employee:
-        pass
 
     async def get_employee_by_id(self, employee_id: int) -> Employee | None:
         pass
@@ -49,6 +46,7 @@ class EmployeeRepository(Repository, IEmployeeRepository):
 
             if value is not None:
                 conditions.append(getattr(self._model, field) == value)
+                print(field, value)
 
         if conditions:
             stmt = stmt.where(and_(*conditions))
@@ -57,3 +55,7 @@ class EmployeeRepository(Repository, IEmployeeRepository):
         employees = result.scalars().all()
 
         return employees
+
+    async def insert_prefill_employees(self, employees: Employee) -> None:
+        self._session.add_all(employees)
+        await self._session.commit()

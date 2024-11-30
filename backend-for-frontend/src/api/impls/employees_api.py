@@ -12,19 +12,16 @@ class EmployeesAPI(IEmployeesAPI):
     _EMPLOYEES_URL = "http://employees:8082"
 
     async def find_employees_by_filters(self, filters: FiltersSchema) -> list[int]:
-        print(filters)
         async with ClientSession() as session:
             try:
                 response = await session.post(
                     url=self._EMPLOYEES_URL + "/api/filter",
                     json=filters.dict()
                 )
-            except Exception as e:
-                print("EXCEPTION" + e)
+            except Exception:
                 return {}
 
             if response.status != 200:
-                print(response.status)
                 return {}
 
             filtered_employees = await response.json(encoding="utf-8")

@@ -26,5 +26,4 @@ class SubServicesManagerService:
         if prompt is not None:
             pass
 
-        print(filtered_employees)
         return filtered_employees

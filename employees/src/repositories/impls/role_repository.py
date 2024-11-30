@@ -39,3 +39,7 @@ class RoleRepository(Repository, IRoleRepository):
             return None
 
         return RoleSchema.from_orm(role)
+
+    async def insert_prefill_roles(self, roles: list[Role]) -> None:
+        self._session.add_all(roles)
+        await self._session.commit()

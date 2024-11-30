@@ -1,8 +1,8 @@
 """initialization
 
-Revision ID: 1eea50c07676
+Revision ID: e86506d09f1e
 Revises: 
-Create Date: 2024-11-30 12:47:37.767497
+Create Date: 2024-11-30 18:43:52.390988
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '1eea50c07676'
+revision: str = 'e86506d09f1e'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -46,17 +46,14 @@ def upgrade() -> None:
     sa.Column('post_id', sa.Integer(), nullable=False),
     sa.Column('department_id', sa.Integer(), nullable=False),
     sa.Column('first_name', sa.String(length=100), nullable=False),
-    sa.Column('middle_name', sa.String(length=100), nullable=False),
     sa.Column('last_name', sa.String(length=100), nullable=False),
-    sa.Column('birthdate', sa.Date(), nullable=False),
-    sa.Column('sex', sa.String(), nullable=False),
-    sa.Column('phone_number', sa.String(length=12), nullable=False),
+    sa.Column('birthdate', sa.Date(), nullable=True),
+    sa.Column('sex', sa.String(), nullable=True),
+    sa.Column('phone_number', sa.String(length=20), nullable=False),
     sa.Column('email', sa.String(length=100), nullable=False),
     sa.Column('tg_username', sa.String(length=100), nullable=True),
     sa.Column('city', sa.String(), nullable=False),
     sa.Column('address', sa.String(), nullable=True),
-    sa.Column('is_on_sick_leave', sa.Boolean(), nullable=False),
-    sa.Column('is_on_leave', sa.Boolean(), nullable=False),
     sa.Column('boss_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['boss_id'], ['employees.id'], ),
     sa.ForeignKeyConstraint(['department_id'], ['departments.id'], ),

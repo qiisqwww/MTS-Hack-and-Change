@@ -10,13 +10,13 @@ __all__ = [
 
 class IEmployeeRepository(ABC):
     @abstractmethod
-    async def insert_employee(self, employee: EmployeeSchema) -> Employee:
-        ...
-
-    @abstractmethod
     async def get_employee_by_id(self, employee_id: int) -> Employee | None:
         ...
 
     @abstractmethod
     async def get_employee_by_filters(self, filters: FiltersQuerySchema) -> list[Employee]:
+        ...
+
+    @abstractmethod
+    async def insert_prefill_employees(self, employees: Employee) -> None:
         ...

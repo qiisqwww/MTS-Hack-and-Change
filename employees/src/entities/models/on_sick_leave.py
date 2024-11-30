@@ -16,4 +16,4 @@ class OnSickLeave(Base):
     date_from = Column(Date, nullable=False)
     date_to = Column(Date, nullable=False)
 
-    employee = relationship("Employee", back_populates="sick_leaves", uselist=False)
+    employee = relationship("Employee", back_populates="sick_leaves", uselist=False, lazy='selectin')

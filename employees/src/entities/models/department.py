@@ -15,4 +15,4 @@ class Department(Base):
     name = Column(String, nullable=False)
     path = Column(String)
 
-    employees = relationship("Employee", back_populates="department")
+    employees = relationship("Employee", back_populates="department", lazy='selectin')

@@ -87,7 +87,6 @@ class EmployeesService:
                 post=employee.post.name,
                 department_path=employee.department.path,
                 first_name=employee.first_name,
-                middle_name=employee.middle_name,
                 last_name=employee.last_name,
                 birthdate=employee.birthdate,
                 sex=employee.sex,

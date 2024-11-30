@@ -28,3 +28,7 @@ class DepartmentRepository(Repository, IDepartmentRepository):
         department = await self._session.scalar(stmt)
 
         return DepartmentSchema.from_orm(department) if department is not None else None
+
+    async def insert_prefill_departments(self, departments: list[Department]) -> None:
+        self._session.add_all(departments)
+        await self._session.commit()

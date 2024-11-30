@@ -14,7 +14,6 @@ class EmployeeInputSchema(BaseModel):
     functional_block_id: int
     department_id: int
     first_name: str
-    middle_name: str
     last_name: str
     birth_date: date
     sex: SexEnum

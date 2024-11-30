@@ -7,7 +7,7 @@ __all__ = [
 
 class DepartmentSchema(BaseModel):
     id: int
-    name: int
+    name: str
     path: str
 
     model_config = ConfigDict(from_attributes=True)

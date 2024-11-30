@@ -21,6 +21,7 @@ RUN poetry config virtualenvs.create false && poetry install --no-dev --no-inter
 
 # Копирование необходимых для работы приложения файлов
 COPY src /app/src
+COPY prefill /app/prefill
 COPY alembic /app/alembic
 COPY alembic.ini /app/alembic.ini
 COPY scripts/app.sh /app/scripts/app.sh
