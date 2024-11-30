@@ -4,6 +4,8 @@ import Footer from "./components/Footer/Footer";
 import Layout from "./components/Layout/Layout";
 import LeftBoard from "./components/LeftBoard/LeftBoard";
 import { Popover } from "antd";
+import { useState } from "react";
+import { MPopup } from "./components/Popup/Popup";
 
 const content = (
   <div style={{ padding: 10 }}>
@@ -16,12 +18,43 @@ const content = (
   </div>
 );
 
+// eslint-disable-next-line react-refresh/only-export-components
+export const animatePopup = {
+  hidden: {
+    opacity: 0,
+  },
+  visiable: () => ({
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+    },
+  }),
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0.3,
+      ease: "easeInOut",
+    },
+  },
+};
+
 function App() {
+  const [popup, setPopup] = useState(false);
+
   return (
     <>
+      {popup && (
+        <MPopup
+          setPopup={setPopup}
+          initial="hidden"
+          animate="visiable"
+          exit="exit"
+          variants={animatePopup}
+        />
+      )}
       <main className="main">
         <LeftBoard />
-        <Layout />
+        <Layout setPopup={setPopup} />
         <div className="question">
           <Popover content={content}>
             <QuestionCircleOutlined className="question-icon" />

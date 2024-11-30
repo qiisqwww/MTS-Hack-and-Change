@@ -15,6 +15,7 @@ export default function Input({ isSearch, setIsSearch }: InputProps) {
       className={`${styles.border} ${isSearch ? styles.borderOnSearch : " "}`}
     >
       <input
+        placeholder="Поиск сотрудника"
         className={`${styles.input} ${isSearch ? styles.inputOnSearch : " "}`}
       ></input>
       <div className={styles.bottom}>

@@ -4,6 +4,10 @@ import styles from "./Layout.module.css";
 import Card from "../Card/Card";
 import { motion } from "motion/react";
 
+interface layoutProps {
+  setPopup: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 export const animation = {
   hidden: {
     opacity: 0,
@@ -19,7 +23,7 @@ export const animation = {
   }),
 };
 
-export default function Layout() {
+export default function Layout({ setPopup }: layoutProps) {
   const [isSearch, setIsSearch] = useState(false);
 
   return (
@@ -31,11 +35,11 @@ export default function Layout() {
       <Input isSearch={isSearch} setIsSearch={setIsSearch} />
       {isSearch && (
         <motion.div initial="hidden" animate="visiable" variants={animation}>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          <Card setPopup={setPopup} />
+          <Card setPopup={setPopup} />
+          <Card setPopup={setPopup} />
+          <Card setPopup={setPopup} />
+          <Card setPopup={setPopup} />
         </motion.div>
       )}
     </section>

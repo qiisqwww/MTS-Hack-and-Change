@@ -1,7 +1,11 @@
 import styles from "./Card.module.css";
 import defaultAvatar from "../../assets/defaultAvatar.svg";
 
-export default function Card() {
+interface CardProps {
+  setPopup: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function Card({ setPopup }: CardProps) {
   return (
     <div className={styles.card}>
       <div className={styles.displayFlex}>
@@ -9,7 +13,10 @@ export default function Card() {
         <div>
           <h2 className={styles.name}>Обимпе</h2>
           <h3 className={styles.age}>
-            22 года <span>bobo</span>
+            22 года{" "}
+            <li className={styles.sick}>
+              <span>На больничном с 29.11.2024 до 31.11.2077</span>
+            </li>
           </h3>
           <div className={styles.displayFlex}>
             <div className={styles.job}>
@@ -20,7 +27,14 @@ export default function Card() {
             </div>
           </div>
         </div>
-        <button className={styles.button}>ПОДРОБНЕЕ</button>
+        <button
+          className={styles.button}
+          onClick={() => {
+            setPopup(true);
+          }}
+        >
+          ПОДРОБНЕЕ
+        </button>
       </div>
       <div>
         <div className={styles.grid}>
@@ -57,7 +71,14 @@ export default function Card() {
         <div className={styles.grid}>
           <h4 className={styles.point}>Руководитель</h4>
           <div className={styles.displayFlex}>
-            <p className={styles.text}>Мацегора Виктор Николаевич</p>
+            <p
+              className={styles.text + " " + styles.master}
+              onClick={() => {
+                setPopup(true);
+              }}
+            >
+              Мацегора Виктор Николаевич
+            </p>
           </div>
         </div>
         <hr className={styles.line}></hr>
