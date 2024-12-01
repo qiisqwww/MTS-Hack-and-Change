@@ -3,8 +3,8 @@ version: '3.8'
 services:
   nginx_proxy:
     depends_on:
-#      client:
-#        condition: service_completed_successfully
+      client:
+        condition: service_completed_successfully
       employees:
         condition: service_healthy
       ml-searcher:
@@ -18,7 +18,6 @@ services:
       - ./client/dist:/usr/share/nginx/html
     ports:
       - "80:80"
-
     networks:
       - mts_network
 
@@ -34,7 +33,7 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - mts_network
+      - mts_network 
 
   employees:
     build:
@@ -83,6 +82,17 @@ services:
       retries: 5
     networks:
       - mts_network
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=development
+    command: npm run build
+    volumes:
+      - ./client:/app
+      - /app/node_modules
 
 volumes:
   db_data:
