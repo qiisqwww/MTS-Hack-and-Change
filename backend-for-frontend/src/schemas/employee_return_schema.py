@@ -11,6 +11,7 @@ __all__ = [
 
 
 class EmployeeReturnSchema(BaseModel):
+    id: int
     post: str | None
     department_path: str | None
     department_name: str | None
