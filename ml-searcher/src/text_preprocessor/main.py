@@ -1,6 +1,3 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from typing import List, Dict, Any
 import json
 import string
 import pymorphy3
@@ -9,11 +6,10 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import nltk
 
-# Убедитесь, что необходимые ресурсы NLTK загружены
 nltk.download('stopwords')
-nltk.download('punkt_tabs')
+nltk.download('punkt')
 
-
+# Вспомогательные функции
 def is_email(text):
     email_pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
     return re.match(email_pattern, text) is not None
@@ -44,9 +40,9 @@ def preprocess_text(text, morph, stop_words):
 
 def process_records(data, morph, stop_words):
     processed_tokens = {}
-    for record in data['filtered_employees']:
+    for record in data:
         words = set()
-        for key, value in record.items():
+        for key, value in record.dict().items():
             if isinstance(value, str):
                 if key == 'email':
                     words.add(value)
@@ -60,7 +56,7 @@ def process_records(data, morph, stop_words):
         lemmas = preprocess_text(' '.join(non_email_words), morph, stop_words)
         final_tokens = lemmas.union({w for w in words if is_email(w)})
 
-        processed_tokens[record['id']] = final_tokens
+        processed_tokens[record.id] = final_tokens
 
     return processed_tokens
 
@@ -76,11 +72,39 @@ def create_inverted_index(processed_data):
     return inverted_index
 
 
-def find_matching_ids_inverted(index, processed_prompt, min_matches=1):
-    record_counts = {}
-    for lemma in processed_prompt:
-        if lemma in index:
-            for record_id in index[lemma]:
-                record_counts[record_id] = record_counts.get(record_id, 0) + 1
-    return [record_id for record_id, count in record_counts.items() if count >= min_matches]
+def find_matching_ids_inverted(inverted_index, processed_prompt, min_matches=1):
+    matches = {}
+    for word in processed_prompt:
+        if word in inverted_index:
+            for user_id in inverted_index[word]:
+                if user_id not in matches:
+                    matches[user_id] = 0
+                matches[user_id] += 1
+    filtered = {user_id: count for user_id, count in matches.items() if count >= min_matches}
 
+    return filtered
+
+
+def find_users(filtered_employees, prompt, threshold=0.5):
+    morph = pymorphy3.MorphAnalyzer()
+    stop_words = set(stopwords.words('russian')).union(set(stopwords.words('english')))
+    stop_words.difference_update({'не', 'нет'})
+
+    processed_prompt = preprocess_text(prompt, morph, stop_words)
+
+    min_matches = max(1, int(len(processed_prompt) * threshold))
+
+    processed_data = process_records(filtered_employees, morph, stop_words)
+
+    inverted_index = create_inverted_index(processed_data)
+
+    matching_dict = find_matching_ids_inverted(inverted_index, processed_prompt, min_matches=min_matches)
+
+    if not matching_dict:
+        return []
+
+    max_count = max(matching_dict.values())
+
+    top_ids = [user_id for user_id, count in matching_dict.items() if count == max_count]
+
+    return top_ids

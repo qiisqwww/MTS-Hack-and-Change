@@ -41,4 +41,13 @@ class Employee(BaseModel):
 class InputData(BaseModel):
     filtered_employees: List[Employee]
     prompt: str
-    threshold: float = 0.7
+
+
+
+class FilterRequest(BaseModel):
+    filtered_employees: List[Employee]
+    prompt: str
+
+
+class FilterResponse(BaseModel):
+    matching_ids: List[int]
