@@ -1,11 +1,21 @@
 from datetime import date
-from typing import List
+from typing import List, Dict, Any
 
 from pydantic import BaseModel, EmailStr
 
 from .on_leave_schema import OnLeaveSchema
 from .on_sick_leave_schema import OnSickLeaveSchema
 
+
+
+# Модель данных для запроса
+class SearchRequest(BaseModel):
+    data: Dict[str, Any]  # JSON данные сотрудников
+    prompt: str  # Промпт для поиска
+
+# Модель данных для ответа
+class SearchResponse(BaseModel):
+    matching_ids_name: Dict[int, str]
 
 
 class Employee(BaseModel):

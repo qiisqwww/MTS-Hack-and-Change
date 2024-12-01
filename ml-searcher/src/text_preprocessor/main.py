@@ -1,105 +1,86 @@
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from typing import List, Dict, Any
 import json
-from nltk.tokenize import word_tokenize
 import string
+import pymorphy3
+import re
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+import nltk
 
-__all__=[
-    "load_json",
-    "translate_text",
-    "preprocess_text",
-    "format_birthdate",
-    "process_records",
-    "find_matching_ids"
-]
-
-def load_json(json_input):
-    """Загружает данные из JSON строки."""
-    return json.loads(json_input)
+# Убедитесь, что необходимые ресурсы NLTK загружены
+nltk.download('stopwords')
+nltk.download('punkt_tabs')
 
 
-def translate_text(text, translator):
-    """
-    Переводит весь текст на английский язык.
-    """
-    translated = translator.translate(text)
-    return translated.lower()
+def is_email(text):
+    email_pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+    return re.match(email_pattern, text) is not None
 
 
-def preprocess_text(text, lemmatizer, stop_words):
-    """
-    Выполняет предварительную обработку текста:
-    - Приведение к нижнему регистру
-    - Удаление пунктуации и цифр
-    - Токенизация
-    - Удаление стоп-слов
-    - Лемматизация
-    """
+def extract_emails(text):
+    email_pattern = r'[\w\.-]+@[\w\.-]+\.\w+'
+    return re.findall(email_pattern, text.lower())
+
+
+def preprocess_text(text, morph, stop_words):
     if not isinstance(text, str):
         return set()
 
-    # Приведение к нижнему регистру
+    if is_email(text):
+        return {text}
+
     text = text.lower()
+    translator = str.maketrans('', '', string.punctuation)
+    text = text.translate(translator)
 
-    # Удаление пунктуации
-    text = text.translate(str.maketrans('', '', string.punctuation))
-
-    # Токенизация
-    tokens = word_tokenize(text)
-
-    # Удаление стоп-слов
+    tokens = word_tokenize(text, language="russian")
     tokens = [word for word in tokens if word not in stop_words]
-
-    # Лемматизация
-    lemmas = [lemmatizer.lemmatize(word) for word in tokens]
+    lemmas = [morph.parse(word)[0].normal_form for word in tokens]
 
     return set(lemmas)
 
 
-def format_birthdate(text):
-    """
-    Заменяет точки в дате рождения на пробелы.
-    """
-    return text.replace('.', ' ')
-
-
-def process_records(data, lemmatizer, stop_words, translator):
-    """
-    Обрабатывает все записи:
-    - Объединяет все строковые значения в одной записи
-    - Переводит объединенный текст на английский
-    - Предобрабатывает переведенный текст
-    """
-    processed = {}
+def process_records(data, morph, stop_words):
+    processed_tokens = {}
     for record in data['filtered_employees']:
-        # Объединение всех строковых полей
-        combined = ' '.join([format_birthdate(str(value)) if 'birthdate' in key else str(value) for key, value in record.items() if isinstance(value, str)])
+        words = set()
+        for key, value in record.items():
+            if isinstance(value, str):
+                if key == 'email':
+                    words.add(value)
+                else:
+                    emails = extract_emails(value)
+                    words.update(emails)
+                    tokens = word_tokenize(value, language="russian")
+                    words.update(tokens)
 
-        # Перевод всего текста
-        translated_text = translate_text(combined, translator)
+        non_email_words = [w for w in words if not is_email(w)]
+        lemmas = preprocess_text(' '.join(non_email_words), morph, stop_words)
+        final_tokens = lemmas.union({w for w in words if is_email(w)})
 
-        # Предобработка переведенного текста
-        processed[record['id']] = preprocess_text(translated_text, lemmatizer, stop_words)
-    return processed
+        processed_tokens[record['id']] = final_tokens
 
-
-def process_prompt(prompt, lemmatizer, stop_words, translator):
-    """
-    Обрабатывает поисковый запрос:
-    - Переводит запрос на английский
-    - Предобрабатывает переведенный текст
-    """
-    translated_prompt = translate_text(prompt, translator)
-    return preprocess_text(translated_prompt, lemmatizer, stop_words)
+    return processed_tokens
 
 
-def find_matching_ids(processed_data, processed_prompt, threshold):
-    """
-    Ищет идентификаторы записей, которые соответствуют запросу по заданному порогу совпадений.
-    """
-    matching_ids = []
-    for uid, words in processed_data.items():
-        matches = len(words & processed_prompt)
-        ratio = matches / len(processed_prompt) if processed_prompt else 0
-        if ratio >= threshold:
-            matching_ids.append(uid)
-    return matching_ids
+def create_inverted_index(processed_data):
+    inverted_index = {}
+    for record_id, lemmas in processed_data.items():
+        for lemma in lemmas:
+            if lemma in inverted_index:
+                inverted_index[lemma].add(record_id)
+            else:
+                inverted_index[lemma] = {record_id}
+    return inverted_index
+
+
+def find_matching_ids_inverted(index, processed_prompt, min_matches=1):
+    record_counts = {}
+    for lemma in processed_prompt:
+        if lemma in index:
+            for record_id in index[lemma]:
+                record_counts[record_id] = record_counts.get(record_id, 0) + 1
+    return [record_id for record_id, count in record_counts.items() if count >= min_matches]
 
