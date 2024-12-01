@@ -6,6 +6,7 @@ interface date {
 }
 
 export interface IPreson {
+  id: number;
   post: string;
   department_path: string;
   department_name: string;

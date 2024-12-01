@@ -101,13 +101,13 @@ export default function Filters() {
     console.log(data?.departments, departmentNumber);
     const params = {
       department_name: departmentNumber
-        ? data?.departments[Number(departmentNumber) - 1].name
+        ? data?.departments[Number(departmentNumber) - 2].name
         : null,
       post: result.post
-        ? data?.posts_and_roles.posts[Number(result.post) - 1].name
+        ? data?.posts_and_roles.posts[Number(result.post) - 2].name
         : null,
       role: result.role
-        ? data?.posts_and_roles.roles[Number(result.role) - 1].name
+        ? data?.posts_and_roles.roles[Number(result.role) - 2].name
         : null,
       first_name: result.first_name,
       last_name: result.last_name,
@@ -239,7 +239,7 @@ export default function Filters() {
         />
       </ul>
       <button className={styles.submit} onClick={handleApply}>
-        ПРИМЕНИТЬ
+        ИСКАТЬ
       </button>
       <button className={styles.reset} onClick={handleReset}>
         СБРОСИТЬ

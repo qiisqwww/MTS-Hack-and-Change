@@ -11,12 +11,11 @@ interface CardProps {
 }
 
 export default function Card({ setPopup, card }: CardProps) {
-  const { setMaster } = useCards();
+  const { setMaster, setCards } = useCards();
   const currentDate = dayjs();
   const age = currentDate.diff(card.birthdate, "year");
 
   const handleMaster = async () => {
-    console.log(card.boss_id);
     try {
       const response = await axios.get<IPreson>(
         `${import.meta.env.VITE_API_URL}/boss`,
@@ -36,10 +35,28 @@ export default function Card({ setPopup, card }: CardProps) {
   const handleSub = async () => {
     try {
       const response = await axios.get<IPreson>(
+        `${import.meta.env.VITE_API_URL}/subs`,
+        {
+          params: {
+            boss_id: card.id,
+          },
+        }
+      );
+      console.log(response.data);
+      setCards(response.data);
+    } catch (error: unknown) {
+      const e = error as AxiosError;
+      console.error(e);
+    }
+  };
+
+  const handleMore = async () => {
+    try {
+      const response = await axios.get<IPreson>(
         `${import.meta.env.VITE_API_URL}/boss`,
         {
           params: {
-            boss_id: card.boss_id,
+            boss_id: card.id,
           },
         }
       );
@@ -93,6 +110,7 @@ export default function Card({ setPopup, card }: CardProps) {
         <button
           className={styles.button}
           onClick={() => {
+            handleMore();
             setPopup(true);
           }}
         >
