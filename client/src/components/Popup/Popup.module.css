@@ -125,3 +125,18 @@
 .button:hover img {
   color: black;
 }
+
+.master {
+  transition: 0.3s;
+  cursor: pointer;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  background-color: #969fa8;
+  color: #fff;
+  margin-top: 20px;
+}
+
+.master:hover {
+  background-color: #1d2023d8;
+}

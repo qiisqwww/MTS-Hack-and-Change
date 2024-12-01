@@ -33,6 +33,23 @@ export default function Card({ setPopup, card }: CardProps) {
     }
   };
 
+  const handleSub = async () => {
+    try {
+      const response = await axios.get<IPreson>(
+        `${import.meta.env.VITE_API_URL}/boss`,
+        {
+          params: {
+            boss_id: card.boss_id,
+          },
+        }
+      );
+      setMaster(response.data);
+    } catch (error: unknown) {
+      const e = error as AxiosError;
+      console.error(e);
+    }
+  };
+
   return (
     <div className={styles.card}>
       <div className={styles.displayFlex}>
@@ -128,7 +145,7 @@ export default function Card({ setPopup, card }: CardProps) {
           <button
             className={styles.point + " " + styles.master}
             onClick={() => {
-              setPopup(true);
+              handleSub();
             }}
           >
             Подчиненные

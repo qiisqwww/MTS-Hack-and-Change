@@ -117,6 +117,19 @@ export const Popup = forwardRef(
                 <p className={styles.text}>{master?.address}</p>
               </div>
             </div>
+
+            <hr className={styles.line}></hr>
+            <div className={styles.grid}>
+              <h4 className={styles.point}>О себе</h4>
+              <div className={styles.displayFlex}>
+                <p className={styles.text}>
+                  Чилловый парень — любит не спать два дня из-за хакатона,
+                  потому что он чилловый парень, любит гулять и тусить с
+                  друзьями.
+                </p>
+              </div>
+            </div>
+            <hr className={styles.line}></hr>
             {master?.boss_id && (
               <button
                 className={styles.point + " " + styles.master}
@@ -127,19 +140,6 @@ export const Popup = forwardRef(
                 Руководитель
               </button>
             )}
-            <hr className={styles.line}></hr>
-            <div className={styles.grid}>
-              <h4 className={styles.point}>О себе</h4>
-              <div className={styles.displayFlex}>
-                <p className={styles.text}>
-                  Обезьяна — млекопитающее животное из отряда приматов. Из всех
-                  животных в целом обезьяны считаются более развитыми в
-                  эволюционном отношении. Наиболее близкий к человеку вид
-                  животных, особенно в физиологическом отношении.
-                </p>
-              </div>
-            </div>
-            <hr className={styles.line}></hr>
           </div>
         </div>
       </div>

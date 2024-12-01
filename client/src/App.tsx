@@ -42,6 +42,7 @@ export const animatePopup = {
 function App() {
   const [popup, setPopup] = useState(false);
   // const { theme, setTheme } = useTheme();
+  // console.log(theme);
 
   return (
     <ConfigProvider
