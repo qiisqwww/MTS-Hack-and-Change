@@ -24,9 +24,21 @@ class Employee(Base):
     city = Column(String, nullable=False)
     address = Column(String)
     boss_id = Column(Integer, ForeignKey('employees.id'))
+    about = Column(String, nullable=False, default="")
 
     post = relationship("Post", back_populates="employees", lazy='selectin')
     department = relationship("Department", back_populates="employees", lazy='selectin')
-    sick_leaves = relationship("OnSickLeave", back_populates="employee",
-                               cascade="all, delete-orphan", uselist=False, lazy='selectin')
-    leaves = relationship("OnLeave", back_populates="employee", cascade="all, delete-orphan", uselist=False, lazy='selectin')
+    sick_leaves = relationship(
+        "OnSickLeave",
+        back_populates="employee",
+        cascade="all, delete-orphan",
+        uselist=False,
+        lazy='selectin'
+    )
+    leaves = relationship(
+        "OnLeave",
+        back_populates="employee",
+        cascade="all, delete-orphan",
+        uselist=False,
+        lazy='selectin'
+    )

@@ -4,28 +4,11 @@ import styles from "./Layout.module.css";
 import Card from "../Card/Card";
 import { motion } from "motion/react";
 import { List } from "antd";
+import { useCards } from "../../context/DataContext";
 
 interface layoutProps {
   setPopup: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
-const data = [
-  {
-    title: "title",
-  },
-  {
-    title: "title",
-  },
-  {
-    title: "title",
-  },
-  {
-    title: "title",
-  },
-  {
-    title: "title",
-  },
-];
 
 export const animation = {
   hidden: {
@@ -43,7 +26,8 @@ export const animation = {
 };
 
 export default function Layout({ setPopup }: layoutProps) {
-  const [isSearch, setIsSearch] = useState(false);
+  const [isSearch, setIsSearch] = useState(true);
+  const { cards } = useCards();
 
   return (
     <section className={`${styles.layout} ${isSearch ? styles.search : " "}`}>
@@ -57,11 +41,11 @@ export default function Layout({ setPopup }: layoutProps) {
           <List
             className={styles.list}
             pagination={{ pageSize: 3, align: "center" }}
-            dataSource={data}
+            dataSource={cards || []}
             split={false}
             renderItem={(item) => (
-              <List.Item key={item.title}>
-                <Card setPopup={setPopup} />
+              <List.Item key={"sss"}>
+                <Card setPopup={setPopup} card={item} />
               </List.Item>
             )}
           ></List>

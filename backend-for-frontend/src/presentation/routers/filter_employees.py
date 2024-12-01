@@ -1,9 +1,11 @@
+from typing import List
+
 from fastapi import APIRouter, Query, Depends
 from pydantic import EmailStr
 
 from src.get_service import get_sub_services_manager_service
 from src.services import SubServicesManagerService
-from src.schemas import FiltersSchema
+from src.schemas import FiltersSchema, EmployeeReturnSchema
 
 __all__ = [
     "filter_employees_router",
@@ -13,7 +15,7 @@ __all__ = [
 filter_employees_router = APIRouter()
 
 
-@filter_employees_router.get("/filter")
+@filter_employees_router.get("/filter", response_model=List[EmployeeReturnSchema])
 async def filter_employees(
         sub_services_manager_service: SubServicesManagerService = Depends(get_sub_services_manager_service),
         department_name: str | None = Query(None),

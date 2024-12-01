@@ -84,8 +84,10 @@ class EmployeesService:
                 )
 
             employees_schema.append(EmployeeReturnSchema(
+                id=employee.id,
                 post=employee.post.name,
                 department_path=employee.department.path,
+                department_name=employee.department.name,
                 first_name=employee.first_name,
                 last_name=employee.last_name,
                 birthdate=employee.birthdate,
@@ -97,7 +99,8 @@ class EmployeesService:
                 email=employee.email,
                 on_sick_leave_info=on_sick_leave,
                 on_leave_info=on_leave,
-                boss_id=employee.boss_id
+                boss_id=employee.boss_id,
+                about=employee.about
             ))
 
         return employees_schema

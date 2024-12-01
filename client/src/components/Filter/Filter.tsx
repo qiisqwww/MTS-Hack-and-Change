@@ -1,12 +1,19 @@
-import { Select } from "antd";
 import Arrow from "../Arrow/Arrow";
 import styles from "./Filter.module.css";
 
 interface FilterProps {
   title: string;
   isList: boolean;
+  options?: { id: number; name: string }[];
+  inputRef?: (el: HTMLInputElement | HTMLSelectElement | null) => void;
 }
-export default function Filter({ title, isList }: FilterProps) {
+
+export default function Filter({
+  title,
+  isList,
+  options,
+  inputRef,
+}: FilterProps) {
   return (
     <li className={styles.filter}>
       <div className={styles.section}>
@@ -14,28 +21,22 @@ export default function Filter({ title, isList }: FilterProps) {
         <Arrow />
       </div>
       {isList ? (
-        <Select
-          showSearch
+        <select
+          ref={inputRef as React.Ref<HTMLSelectElement>}
           className={styles.select}
-          placeholder="Select"
-          optionFilterProp="label"
-          options={[
-            {
-              value: "jack",
-              label: "Jack",
-            },
-            {
-              value: "lucy",
-              label: "Lucy",
-            },
-            {
-              value: "tom",
-              label: "Tom",
-            },
-          ]}
-        />
+        >
+          {options?.map((option) => (
+            <option key={option.id} value={option.id}>
+              {option.name}
+            </option>
+          ))}
+        </select>
       ) : (
-        <input className={styles.input} />
+        <input
+          ref={inputRef as React.Ref<HTMLInputElement>}
+          className={styles.input}
+          placeholder="Введите данные"
+        />
       )}
     </li>
   );

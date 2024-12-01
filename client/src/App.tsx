@@ -6,6 +6,8 @@ import LeftBoard from "./components/LeftBoard/LeftBoard";
 import { ConfigProvider, Popover } from "antd";
 import { useState } from "react";
 import { MPopup } from "./components/Popup/Popup";
+// import { create } from "zustand";
+// import { IPreson } from "./interfaces/IPerson";
 // import { useTheme } from "./hooks/useTheme";
 
 const content = (

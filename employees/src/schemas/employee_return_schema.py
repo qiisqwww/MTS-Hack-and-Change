@@ -12,8 +12,10 @@ __all__ = [
 
 
 class EmployeeReturnSchema(BaseModel):
+    id: int
     post: str | None
     department_path: str | None
+    department_name: str | None
     first_name: str | None
     last_name: str | None
     birthdate: date | None
@@ -26,3 +28,4 @@ class EmployeeReturnSchema(BaseModel):
     on_sick_leave_info: OnSickLeaveSchema | None
     on_leave_info: OnLeaveSchema | None
     boss_id: int | None
+    about: str | None
