@@ -3,9 +3,10 @@ import "./App.css";
 import Footer from "./components/Footer/Footer";
 import Layout from "./components/Layout/Layout";
 import LeftBoard from "./components/LeftBoard/LeftBoard";
-import { ConfigProvider, Popover } from "antd";
+import { ConfigProvider, Popover, Switch } from "antd";
 import { useState } from "react";
 import { MPopup } from "./components/Popup/Popup";
+import { useTheme } from "./hooks/useTheme";
 // import { useTheme } from "./hooks/useTheme";
 
 const content = (
@@ -41,8 +42,11 @@ export const animatePopup = {
 
 function App() {
   const [popup, setPopup] = useState(false);
-  // const { theme, setTheme } = useTheme();
-  // console.log(theme);
+  const { theme, setTheme } = useTheme();
+  console.log(theme);
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
 
   return (
     <ConfigProvider
@@ -50,13 +54,14 @@ function App() {
         components: {
           Switch: {
             handleSize: 25,
-            trackPadding: 3,
+            trackPadding: 2,
             trackHeight: 31,
             trackMinWidth: 71,
           },
         },
       }}
     >
+      <Switch className="customSwitch" onChange={toggleTheme} />
       {popup && (
         <MPopup
           setPopup={setPopup}
