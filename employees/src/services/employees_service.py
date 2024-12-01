@@ -104,3 +104,30 @@ class EmployeesService:
             ))
 
         return employees_schema
+
+    async def find_employee_by_id(self, employee_id: int) -> EmployeeReturnSchema:
+        employee = await self._employee_repository.get_employee_by_id(employee_id)
+        employee_post = await self._post_repository.get_post_by_id(employee.post_id)
+        employee_department = await self._department_repository.get_department_by_id(employee.department_id)
+        on_sick_leave = await self._on_sick_leave_repository.get_on_sick_leave(employee.id)
+        on_leave = await self._on_leave_repository.get_on_leave(employee.id)
+
+        return EmployeeReturnSchema(
+            id=employee.id,
+            post=employee_post.name,
+            department_path=employee_department.path,
+            department_name=employee_department.name,
+            first_name=employee.first_name,
+            last_name=employee.last_name,
+            birthdate=employee.birthdate,
+            sex=employee.sex,
+            phone_number=employee.phone_number,
+            city=employee.city,
+            address=employee.address,
+            tg_username=employee.tg_username,
+            email=employee.email,
+            on_sick_leave_invo=on_sick_leave,
+            on_leave_info=on_leave,
+            boss_id=employee.boss_id,
+            about=employee.about
+        )

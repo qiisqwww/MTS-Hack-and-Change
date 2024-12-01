@@ -26,6 +26,18 @@ class SubServicesManagerService:
         filtered_employees = [EmployeeTempSchema(**emp) for emp in filtered_employees_raw["filtered_employees"]]
 
         if prompt is not None:
-            pass
+            matching_ids = set(await self._ml_searcher_api.filter_by_prompt(filtered_employees, prompt))
+
+            filtered_employees_from_ml = []
+            for emp in filtered_employees:
+                if emp.id in matching_ids:
+                    filtered_employees_from_ml.append(emp)
+
+            filtered_employees = filtered_employees_from_ml
 
         return filtered_employees
+
+    async def find_employee_boss(self, boss_id: int) -> EmployeeTempSchema:
+        boss = await self._employees_api.find_employee_by_id(boss_id)
+
+        return EmployeeTempSchema(**boss)

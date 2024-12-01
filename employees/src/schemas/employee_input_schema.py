@@ -2,8 +2,6 @@ from datetime import date
 
 from pydantic import BaseModel, EmailStr
 
-from src.enums import SexEnum
-
 __all__ = [
     "EmployeeInputSchema",
 ]
@@ -16,7 +14,7 @@ class EmployeeInputSchema(BaseModel):
     first_name: str
     last_name: str
     birth_date: date
-    sex: SexEnum
+    sex: str
     phone_number: str
     city: str
     address: str

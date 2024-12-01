@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from src.schemas import EmployeeSchema, FiltersQuerySchema
+from src.schemas import FiltersQuerySchema
 from src.entities.models import Employee
 
 __all__ = [

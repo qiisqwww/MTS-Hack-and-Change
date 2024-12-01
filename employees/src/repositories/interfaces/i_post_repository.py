@@ -20,3 +20,7 @@ class IPostRepository(ABC):
     @abstractmethod
     async def insert_prefill_posts(self, posts: list[Post]) -> None:
         ...
+
+    @abstractmethod
+    async def get_post_by_id(self, post_id: int) -> Post:
+        ...

@@ -1,9 +1,5 @@
 [
     {
-        "id": 1,
-        "role": ""
-    },
-    {
         "id": 2,
         "role": "backend"
     },

@@ -1,4 +1,5 @@
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
 
 from src.repositories.repository import Repository
 from src.repositories.interfaces import IOnSickLeaveRepository
@@ -21,4 +22,17 @@ class OnSickLeaveRepository(Repository, IOnSickLeaveRepository):
         pass
 
     async def get_on_sick_leave(self, employee_id: int) -> OnSickLeaveSchema | None:
-        pass
+        stmt = select(self._model).where(self._model.employee_id == employee_id)
+        on_sick_leave = await self._session.scalar(stmt)
+
+        if on_sick_leave is None:
+            return None
+
+        return await OnSickLeaveSchema(
+            date_from=on_sick_leave.date_from,
+            date_to=on_sick_leave.date_to
+        )
+
+    async def insert_prefill_on_sick_leaves(self, on_sick_leaves: list[OnSickLeave]) -> None:
+        self._session.add_all(on_sick_leaves)
+        await self._session.commit()
