@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Input from "../Input/Input";
 import styles from "./Layout.module.css";
 import Card from "../Card/Card";

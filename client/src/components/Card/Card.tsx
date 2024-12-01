@@ -1,6 +1,9 @@
 import styles from "./Card.module.css";
 import defaultAvatar from "../../assets/defaultAvatar.svg";
 import { IPreson } from "../../interfaces/IPerson";
+import dayjs from "dayjs";
+import axios, { AxiosError } from "axios";
+import { useCards } from "../../context/DataContext";
 
 interface CardProps {
   setPopup: React.Dispatch<React.SetStateAction<boolean>>;
@@ -8,6 +11,28 @@ interface CardProps {
 }
 
 export default function Card({ setPopup, card }: CardProps) {
+  const { setMaster } = useCards();
+  const currentDate = dayjs();
+  const age = currentDate.diff(card.birthdate, "year");
+
+  const handleMaster = async () => {
+    console.log(card.boss_id);
+    try {
+      const response = await axios.get<IPreson>(
+        `${import.meta.env.VITE_API_URL}/boss`,
+        {
+          params: {
+            boss_id: card.boss_id,
+          },
+        }
+      );
+      setMaster(response.data);
+    } catch (error: unknown) {
+      const e = error as AxiosError;
+      console.error(e);
+    }
+  };
+
   return (
     <div className={styles.card}>
       <div className={styles.displayFlex}>
@@ -17,10 +42,27 @@ export default function Card({ setPopup, card }: CardProps) {
             {card.first_name} {card.last_name}
           </h2>
           <h3 className={styles.age}>
-            22 года{" "}
-            <li className={styles.sick}>
-              <span>На больничном с 29.11.2024 до 31.11.2077</span>
-            </li>
+            {age} года
+            {card.on_sick_leave_info ? (
+              <li className={styles.sick}>
+                <span>
+                  На больничном с {String(card.on_sick_leave_info.date_from)} до{" "}
+                  {String(card.on_sick_leave_info.date_to)}
+                </span>
+              </li>
+            ) : (
+              " "
+            )}
+            {card.on_leave_info ? (
+              <li className={styles.sick}>
+                <span>
+                  В отпуске с {String(card.on_leave_info.date_from)} до{" "}
+                  {String(card.on_leave_info.date_to)}
+                </span>
+              </li>
+            ) : (
+              " "
+            )}
           </h3>
           <div className={styles.displayFlex}>
             <div className={styles.job}>
@@ -70,17 +112,29 @@ export default function Card({ setPopup, card }: CardProps) {
           </div>
         </div>
         <hr className={styles.line}></hr>
-        <div className={styles.grid}>
-          <h4
+        <div className={styles.grid + " " + styles.team}>
+          {card.boss_id && (
+            <button
+              className={styles.point + " " + styles.master}
+              onClick={() => {
+                handleMaster();
+                setPopup(true);
+              }}
+            >
+              Руководитель
+            </button>
+          )}
+
+          <button
             className={styles.point + " " + styles.master}
             onClick={() => {
               setPopup(true);
             }}
           >
-            Руководитель
-          </h4>
+            Подчиненные
+          </button>
         </div>
-        <hr className={styles.line}></hr>
+        {/* <hr className={styles.line}></hr>/ */}
       </div>
     </div>
   );

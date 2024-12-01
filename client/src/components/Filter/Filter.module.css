@@ -4,6 +4,9 @@
 }
 
 .section {
+  cursor: pointer;
+  position: relative;
+  z-index: 4;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -31,6 +34,19 @@
 
 .select {
   width: 100%;
+  margin-top: 10px;
   font-family: "MTS Text";
   font-weight: 300;
+  border-radius: 5px;
+  border: 1px #ccc solid;
+  width: 100%;
+  height: 30px;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+.arrow {
+  transition: 0.3s;
 }

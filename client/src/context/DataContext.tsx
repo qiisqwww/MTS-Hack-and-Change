@@ -8,6 +8,8 @@ interface IDataContext {
   setIsSearch: React.Dispatch<React.SetStateAction<boolean>>;
   inputValue: string;
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
+  master: IPreson | null;
+  setMaster: React.Dispatch<React.SetStateAction<IPreson | null>>;
 }
 
 const DataContext = createContext<IDataContext | undefined>(undefined);
@@ -18,6 +20,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
   const [cards, setCards] = useState<IPreson | null>(null);
   const [isSearch, setIsSearch] = useState(false);
   const [inputValue, setInputValue] = useState<string>("");
+  const [master, setMaster] = useState<IPreson | null>(null);
 
   return (
     <DataContext.Provider
@@ -28,6 +31,8 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
         setIsSearch,
         inputValue,
         setInputValue,
+        master,
+        setMaster,
       }}
     >
       {children}

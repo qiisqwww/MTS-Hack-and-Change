@@ -10,6 +10,7 @@
 }
 
 .submit {
+  transition: 0.3s;
   width: 100%;
   border: none;
   color: #fff;
@@ -23,7 +24,12 @@
   cursor: pointer;
 }
 
+.submit:hover {
+  background-color: #ff0032cc;
+}
+
 .reset {
+  transition: 0.3s;
   width: 100%;
   border: none;
   color: #fff;
@@ -35,4 +41,8 @@
   padding: 12px;
   margin-top: 20px;
   cursor: pointer;
+}
+
+.reset:hover {
+  background-color: #1d2023d8;
 }

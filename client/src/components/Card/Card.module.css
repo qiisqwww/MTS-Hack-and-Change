@@ -129,6 +129,20 @@
 }
 
 .master {
+  transition: 0.3s;
   cursor: pointer;
-  text-decoration: underline;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  background-color: #969fa8;
+  color: #fff;
+}
+
+.master:hover {
+  background-color: #1d2023d8;
+}
+
+.team {
+  display: flex;
+  justify-content: space-around;
 }
