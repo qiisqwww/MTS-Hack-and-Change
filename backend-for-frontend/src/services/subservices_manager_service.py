@@ -35,7 +35,6 @@ class SubServicesManagerService:
 
             filtered_employees = filtered_employees_from_ml
 
-
         return filtered_employees
 
     async def find_employee_boss(self, boss_id: int) -> EmployeeTempSchema:

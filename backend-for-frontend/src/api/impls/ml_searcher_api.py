@@ -1,4 +1,5 @@
 from aiohttp import ClientSession
+from fastapi.encoders import jsonable_encoder
 
 from src.api.interfaces import IMLSearcherApi
 from src.schemas.employee_temp_schema import EmployeeTempSchema
@@ -17,7 +18,9 @@ class MLSearcherApi(IMLSearcherApi):
                 response = await session.post(
                     self._ML_SEARCHER_URL + "/api/filter",
                     json={
-                        "filtered_employees": [emp.dict() for emp in employees],
+                        "data": {
+                            "filtered_employees": [jsonable_encoder(emp) for emp in employees]
+                        },
                         "prompt": prompt
                     }
                 )
@@ -30,4 +33,4 @@ class MLSearcherApi(IMLSearcherApi):
 
             matching_ids = await response.json(encoding="utf-8")
 
-        return matching_ids
+        return list(map(int, matching_ids.get("matching_ids_name", {}).keys()))

@@ -17,7 +17,7 @@ class EmployeeTempSchema(BaseModel):
     department_name: str | None
     first_name: str
     last_name: str
-    birthdate: str | None
+    birthdate: date | None
     sex: str | None
     phone_number: str
     city: str
