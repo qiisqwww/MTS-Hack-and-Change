@@ -1,11 +1,15 @@
 import { Switch } from "antd";
 import logo from "../../../public/MTC_Logo_RGB.svg";
 import styles from "./Logo.module.css";
-import { useState } from "react";
+import { useTheme } from "../../hooks/useTheme";
 
 export default function Logo() {
-  const [theme, setTheme] = useState("light");
+  const { theme, setTheme } = useTheme();
   console.log(theme);
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
+
   return (
     <div className={styles.section}>
       <div className={styles.logo}>
@@ -15,9 +19,7 @@ export default function Logo() {
       <Switch
         // defaultChecked
         className={styles.customSwitch}
-        onChange={() => {
-          setTheme("dark");
-        }}
+        onChange={toggleTheme}
       />
     </div>
   );

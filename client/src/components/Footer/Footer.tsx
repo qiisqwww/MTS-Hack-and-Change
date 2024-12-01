@@ -16,7 +16,7 @@ export default function Footer() {
         <p className={styles.chill}>
           <span className={styles.span}>МТС</span>, А ВЫ НА ЧИЛЛЕ?{" "}
         </p>
-        <img src={ChillGuy} alt="ChillGuy"></img>
+        <img src={ChillGuy} alt="ChillGuy" className={styles.icon}></img>
       </div>
     </footer>
   );

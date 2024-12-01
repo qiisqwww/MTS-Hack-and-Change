@@ -129,7 +129,7 @@ export default function Filters() {
     );
 
     try {
-      const response = await axios.get<IPreson>(
+      const response = await axios.get<IPreson[]>(
         `${import.meta.env.VITE_API_URL}/filter`,
         {
           params: filteredParams,

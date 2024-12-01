@@ -4,7 +4,7 @@
   border-radius: 36px;
   padding: 25px;
   width: 911px;
-  background-color: #fff;
+  background-color: var(--background-color);
 }
 
 .displayFlex {
@@ -43,6 +43,8 @@
   width: 96px;
   height: 96px;
   margin-right: 36px;
+  stroke: var(--text-color);
+  stroke-width: 2px;
 }
 
 .line {
@@ -116,9 +118,9 @@
   right: 0;
   width: 223px;
   height: 44px;
-  background-color: #1d2023;
+  background-color: var(--button);
   border-radius: 12px;
-  color: #fff;
+  color: var(--background-color);
   font-family: "MTS Wide";
   border: none;
   cursor: pointer;
