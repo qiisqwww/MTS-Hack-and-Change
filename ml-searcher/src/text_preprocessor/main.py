@@ -42,7 +42,7 @@ def process_records(data, morph, stop_words):
     processed_tokens = {}
     for record in data:
         words = set()
-        for key, value in record.dict().items():
+        for key, value in record.items():
             if isinstance(value, str):
                 if key == 'email':
                     words.add(value)
@@ -56,7 +56,7 @@ def process_records(data, morph, stop_words):
         lemmas = preprocess_text(' '.join(non_email_words), morph, stop_words)
         final_tokens = lemmas.union({w for w in words if is_email(w)})
 
-        processed_tokens[record.id] = final_tokens
+        processed_tokens[record["id"]] = final_tokens
 
     return processed_tokens
 

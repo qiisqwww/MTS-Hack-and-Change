@@ -33,4 +33,4 @@ class MLSearcherApi(IMLSearcherApi):
 
             matching_ids = await response.json(encoding="utf-8")
 
-        return list(map(int, matching_ids.get("matching_ids_name", {}).keys()))
+        return list(map(int, matching_ids.get("matching_ids", {})))

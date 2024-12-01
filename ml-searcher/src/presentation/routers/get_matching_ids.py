@@ -22,6 +22,6 @@ nltk.download('WordNetLemmatizer')
 
 app = APIRouter()
 @app.post("/filter", response_model=FilterResponse)
-def filter_users(request: FilterRequest):
-    matching_ids = find_users(request.filtered_employees, request.prompt, 0.3)
+def filter_users(request: SearchRequest):
+    matching_ids = find_users(request.data["filtered_employees"], request.prompt, 0.3)
     return FilterResponse(matching_ids=matching_ids)
