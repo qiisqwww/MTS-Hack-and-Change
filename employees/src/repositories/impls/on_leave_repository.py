@@ -28,7 +28,7 @@ class OnLeaveRepository(Repository, IOnLeaveRepository):
         if on_leave is None:
             return None
 
-        return await OnLeaveSchema(
+        return OnLeaveSchema(
             date_from=on_leave.date_from,
             date_to=on_leave.date_to
         )

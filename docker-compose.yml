@@ -17,7 +17,7 @@ services:
     volumes:
       - ./client/dist:/usr/share/nginx/html
     ports:
-      - "443:443"
+      - "80:80"
 
     networks:
       - mts_network
