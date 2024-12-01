@@ -15,6 +15,7 @@ class EmployeeTempSchema(BaseModel):
     post: str | None
     department_path: str | None
     department_name: str | None
+    role: str | None
     first_name: str
     last_name: str
     birthdate: date | None

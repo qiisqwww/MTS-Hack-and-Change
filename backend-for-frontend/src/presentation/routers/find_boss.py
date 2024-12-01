@@ -9,7 +9,7 @@ find_boss_router = APIRouter()
 
 
 @find_boss_router.get("/boss", response_model=EmployeeReturnSchema)
-async def get_info(
+async def get_boss(
         sub_services_manager_service: SubServicesManagerService = Depends(get_sub_services_manager_service),
         boss_id: int = Query()
 ) -> None:

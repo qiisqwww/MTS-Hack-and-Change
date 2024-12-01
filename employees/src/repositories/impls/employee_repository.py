@@ -67,3 +67,19 @@ class EmployeeRepository(Repository, IEmployeeRepository):
     async def insert_prefill_employees(self, employees: Employee) -> None:
         self._session.add_all(employees)
         await self._session.commit()
+
+    async def find_employee_subs_by_id(self, employee_id: int) -> list[Employee]:
+        stmt = (
+            select(self._model)
+            .join(self._model.post)
+            .join(Post.role)
+            .join(Department, self._model.department_id == Department.id)
+            .outerjoin(OnLeave, OnLeave.employee_id == self._model.id)
+            .outerjoin(OnSickLeave, OnSickLeave.employee_id == self._model.id)
+            .where(self._model.boss_id == employee_id)
+        )
+
+        result = await self._session.execute(stmt)
+        subs = result.scalars().all()
+
+        return subs

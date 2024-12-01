@@ -20,3 +20,7 @@ class IEmployeeRepository(ABC):
     @abstractmethod
     async def insert_prefill_employees(self, employees: Employee) -> None:
         ...
+
+    @abstractmethod
+    async def find_employee_subs_by_id(self, employee_id: int) -> list[Employee]:
+        ...

@@ -1,3 +1,5 @@
+from typing import List
+
 from src.api.interfaces import IEmployeesAPI, IMLSearcherApi
 from src.schemas import FiltersSchema, EmployeeTempSchema
 
@@ -43,3 +45,7 @@ class SubServicesManagerService:
             return None
 
         return EmployeeTempSchema(**boss)
+
+    async def find_employee_subs(self, boss_id: int) -> List[EmployeeTempSchema]:
+        subs = await self._employees_api.find_employee_subs(boss_id)
+        return subs

@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import List
 
 from src.schemas import FiltersSchema
 
@@ -18,4 +19,8 @@ class IEmployeesAPI(ABC):
 
     @abstractmethod
     async def find_employee_by_id(self, boss_id: int) -> dict:
+        ...
+
+    @abstractmethod
+    async def find_employee_subs(self, boss_id: int) -> List[dict]:
         ...
