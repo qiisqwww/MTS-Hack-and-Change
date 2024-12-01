@@ -8,7 +8,7 @@ __all__ = [
 ]
 
 
-class Employee(Base):
+class  Employee(Base):
     __tablename__ = 'employees'
 
     id = Column(Integer, primary_key=True, unique=True, nullable=False)

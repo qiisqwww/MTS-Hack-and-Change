@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from src.schemas import EmployeeSchema, FiltersQuerySchema
+from src.schemas import FiltersQuerySchema
 from src.entities.models import Employee
 
 __all__ = [
@@ -19,4 +19,8 @@ class IEmployeeRepository(ABC):
 
     @abstractmethod
     async def insert_prefill_employees(self, employees: Employee) -> None:
+        ...
+
+    @abstractmethod
+    async def find_employee_subs_by_id(self, employee_id: int) -> list[Employee]:
         ...

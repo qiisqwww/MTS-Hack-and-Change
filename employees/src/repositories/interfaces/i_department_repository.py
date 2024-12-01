@@ -20,3 +20,7 @@ class IDepartmentRepository(ABC):
     @abstractmethod
     async def insert_prefill_departments(self, departments: list[Department]) -> None:
         ...
+
+    @abstractmethod
+    async def get_department_by_id(self, department_id: int) -> Department:
+        ...

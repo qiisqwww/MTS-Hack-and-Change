@@ -21,7 +21,8 @@ class EmployeeRepository(Repository, IEmployeeRepository):
         self._model = Employee
 
     async def get_employee_by_id(self, employee_id: int) -> Employee | None:
-        pass
+        stmt = select(self._model).where(self._model.id == employee_id)
+        return await self._session.scalar(stmt)
 
     async def get_employee_by_filters(self, filters: FiltersQuerySchema) -> list[Employee]:
         department_alias = aliased(Department)
@@ -54,7 +55,6 @@ class EmployeeRepository(Repository, IEmployeeRepository):
 
             if value is not None:
                 conditions.append(getattr(self._model, field) == value)
-                print(field, value)
 
         if conditions:
             stmt = stmt.where(and_(*conditions))
@@ -67,3 +67,19 @@ class EmployeeRepository(Repository, IEmployeeRepository):
     async def insert_prefill_employees(self, employees: Employee) -> None:
         self._session.add_all(employees)
         await self._session.commit()
+
+    async def find_employee_subs_by_id(self, employee_id: int) -> list[Employee]:
+        stmt = (
+            select(self._model)
+            .join(self._model.post)
+            .join(Post.role)
+            .join(Department, self._model.department_id == Department.id)
+            .outerjoin(OnLeave, OnLeave.employee_id == self._model.id)
+            .outerjoin(OnSickLeave, OnSickLeave.employee_id == self._model.id)
+            .where(self._model.boss_id == employee_id)
+        )
+
+        result = await self._session.execute(stmt)
+        subs = result.scalars().all()
+
+        return subs

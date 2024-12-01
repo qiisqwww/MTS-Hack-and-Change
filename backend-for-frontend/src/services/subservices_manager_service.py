@@ -1,3 +1,5 @@
+from typing import List
+
 from src.api.interfaces import IEmployeesAPI, IMLSearcherApi
 from src.schemas import FiltersSchema, EmployeeTempSchema
 
@@ -26,6 +28,24 @@ class SubServicesManagerService:
         filtered_employees = [EmployeeTempSchema(**emp) for emp in filtered_employees_raw["filtered_employees"]]
 
         if prompt is not None:
-            pass
+            matching_ids = set(await self._ml_searcher_api.filter_by_prompt(prompt, filtered_employees))
+
+            filtered_employees_from_ml = []
+            for emp in filtered_employees:
+                if emp.id in matching_ids:
+                    filtered_employees_from_ml.append(emp)
+
+            filtered_employees = filtered_employees_from_ml
 
         return filtered_employees
+
+    async def find_employee_boss(self, boss_id: int) -> EmployeeTempSchema | None:
+        boss = await self._employees_api.find_employee_by_id(boss_id)
+        if boss is None:
+            return None
+
+        return EmployeeTempSchema(**boss)
+
+    async def find_employee_subs(self, boss_id: int) -> List[EmployeeTempSchema]:
+        subs = await self._employees_api.find_employee_subs(boss_id)
+        return subs

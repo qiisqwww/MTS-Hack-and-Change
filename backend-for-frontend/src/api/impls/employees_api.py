@@ -1,3 +1,5 @@
+from typing import List
+
 from aiohttp import ClientSession
 
 from src.api.interfaces import IEmployeesAPI
@@ -41,3 +43,31 @@ class EmployeesAPI(IEmployeesAPI):
             all_data = await response.json(encoding="utf-8")
 
         return all_data
+
+    async def find_employee_by_id(self, boss_id: int) -> dict | None:
+        async with ClientSession() as session:
+            try:
+                response = await session.get(url=self._EMPLOYEES_URL + f"/api/employee?employee_id={boss_id}")
+            except Exception:
+                return None
+
+            if response.status != 200:
+                return None
+
+            employee = await response.json(encoding="utf-8")
+
+        return employee
+
+    async def find_employee_subs(self, boss_id: int) -> List[dict]:
+        async with ClientSession() as session:
+            try:
+                response = await session.get(url=self._EMPLOYEES_URL + f"/api/subs?employee_id={boss_id}")
+            except Exception:
+                return []
+
+            if response.status != 200:
+                return []
+
+            employee = await response.json(encoding="utf-8")
+
+        return employee

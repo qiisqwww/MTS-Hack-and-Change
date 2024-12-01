@@ -1,7 +1,14 @@
-FROM python:3.12-alpine
+FROM python:3.12-slim
 
-# Необходим для healthcheck
-RUN apk add --no-cache curl
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    build-essential \
+    gfortran \
+    libopenblas-dev \
+    liblapack-dev \
+    python3-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV PYTHONFAULTHANDLER=1 \
     PYTHONUNBUFFERED=1 \

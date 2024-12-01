@@ -2,7 +2,6 @@ from datetime import date
 
 from pydantic import BaseModel, EmailStr
 
-from src.enums import SexEnum
 from src.schemas.on_leave_schema import OnLeaveSchema
 from src.schemas.on_sick_leave_schema import OnSickLeaveSchema
 
@@ -14,6 +13,7 @@ __all__ = [
 class EmployeeReturnSchema(BaseModel):
     id: int
     post: str | None
+    role: str | None
     department_path: str | None
     department_name: str | None
     first_name: str | None
