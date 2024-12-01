@@ -130,7 +130,7 @@ class EmployeesService:
             address=employee.address,
             tg_username=employee.tg_username,
             email=employee.email,
-            on_sick_leave_invo=on_sick_leave,
+            on_sick_leave_info=on_sick_leave,
             on_leave_info=on_leave,
             boss_id=employee.boss_id,
             about=employee.about

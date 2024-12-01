@@ -37,7 +37,9 @@ class SubServicesManagerService:
 
         return filtered_employees
 
-    async def find_employee_boss(self, boss_id: int) -> EmployeeTempSchema:
+    async def find_employee_boss(self, boss_id: int) -> EmployeeTempSchema | None:
         boss = await self._employees_api.find_employee_by_id(boss_id)
+        if boss is None:
+            return None
 
         return EmployeeTempSchema(**boss)

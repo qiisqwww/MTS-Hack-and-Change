@@ -42,15 +42,15 @@ class EmployeesAPI(IEmployeesAPI):
 
         return all_data
 
-    async def find_employee_by_id(self, boss_id: int) -> dict:
+    async def find_employee_by_id(self, boss_id: int) -> dict | None:
         async with ClientSession() as session:
             try:
                 response = await session.get(url=self._EMPLOYEES_URL + f"/api/employee?employee_id={boss_id}")
             except Exception:
-                return {}
+                return None
 
             if response.status != 200:
-                return {}
+                return None
 
             employee = await response.json(encoding="utf-8")
 

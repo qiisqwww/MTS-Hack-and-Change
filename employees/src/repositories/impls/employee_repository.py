@@ -21,7 +21,8 @@ class EmployeeRepository(Repository, IEmployeeRepository):
         self._model = Employee
 
     async def get_employee_by_id(self, employee_id: int) -> Employee | None:
-        pass
+        stmt = select(self._model).where(self._model.id == employee_id)
+        return await self._session.scalar(stmt)
 
     async def get_employee_by_filters(self, filters: FiltersQuerySchema) -> list[Employee]:
         department_alias = aliased(Department)
