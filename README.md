@@ -21,6 +21,7 @@ docker-compose up --build
 
 
 Загруженная на сервер версия приложения хранится по адресу: http://188.120.225.145/
+Ссылка на видео-демонстрацию функционала веб-приложения: https://drive.google.com/file/d/13goLDWiGzCMYFcPCm8S86MIj1t8lCq4f/view?usp=drive_link
 
 
 ### Created by ChillGuys
