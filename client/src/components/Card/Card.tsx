@@ -27,7 +27,7 @@ export default function Card({ setPopup, card }: CardProps) {
               <p>{card.post}</p>
             </div>
             <div className={styles.role}>
-              <p>Тестирование</p>
+              <p>{card.role}</p>
             </div>
           </div>
         </div>
@@ -71,17 +71,14 @@ export default function Card({ setPopup, card }: CardProps) {
         </div>
         <hr className={styles.line}></hr>
         <div className={styles.grid}>
-          <h4 className={styles.point}>Руководитель</h4>
-          <div className={styles.displayFlex}>
-            <p
-              className={styles.text + " " + styles.master}
-              onClick={() => {
-                setPopup(true);
-              }}
-            >
-              Мацегора Виктор Николаевич
-            </p>
-          </div>
+          <h4
+            className={styles.point + " " + styles.master}
+            onClick={() => {
+              setPopup(true);
+            }}
+          >
+            Руководитель
+          </h4>
         </div>
         <hr className={styles.line}></hr>
       </div>

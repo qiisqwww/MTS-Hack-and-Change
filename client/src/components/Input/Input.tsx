@@ -1,3 +1,4 @@
+import { useCards } from "../../context/DataContext";
 import styles from "./Input.module.css";
 
 interface InputProps {
@@ -6,10 +7,15 @@ interface InputProps {
 }
 
 export default function Input({ isSearch, setIsSearch }: InputProps) {
+  const { inputValue, setInputValue } = useCards();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value); // обновление значения инпута
+  };
+
   const handleSearch = () => {
     setIsSearch(true);
   };
-
   return (
     <div
       className={`${styles.border} ${isSearch ? styles.borderOnSearch : " "}`}
@@ -17,6 +23,8 @@ export default function Input({ isSearch, setIsSearch }: InputProps) {
       <input
         placeholder="Поиск сотрудника"
         className={`${styles.input} ${isSearch ? styles.inputOnSearch : " "}`}
+        value={inputValue}
+        onChange={handleChange}
       ></input>
       <div className={styles.bottom}>
         <button className={styles.button}>

@@ -37,7 +37,7 @@ export default function Filters() {
   const [departments, setDepartments] = useState<
     { id: number; name: string }[][]
   >([]);
-  const { setCards } = useCards();
+  const { setCards, setIsSearch, inputValue } = useCards();
 
   const refs = useRef<{
     [key: string]: HTMLInputElement | HTMLSelectElement | null;
@@ -116,7 +116,7 @@ export default function Filters() {
       adress: result.adress,
       email: result.email,
       tg_username: result.telegram,
-      prompt: "",
+      prompt: inputValue,
     };
 
     console.log(params);
@@ -137,6 +137,7 @@ export default function Filters() {
       );
       console.log(response.data);
       setCards(response.data);
+      setIsSearch(true);
     } catch (error: unknown) {
       const e = error as AxiosError;
       console.error(e);

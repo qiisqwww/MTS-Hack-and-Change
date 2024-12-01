@@ -26,8 +26,7 @@ export const animation = {
 };
 
 export default function Layout({ setPopup }: layoutProps) {
-  const [isSearch, setIsSearch] = useState(true);
-  const { cards } = useCards();
+  const { cards, isSearch, setIsSearch } = useCards();
 
   return (
     <section className={`${styles.layout} ${isSearch ? styles.search : " "}`}>

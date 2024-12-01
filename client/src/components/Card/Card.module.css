@@ -77,27 +77,36 @@
 }
 
 .job {
+  box-sizing: border-box;
+  padding: 0 18px;
   background-color: #a6d3ff;
-  padding: 4px 16px;
   border-radius: 8px;
   color: #0070ff;
   font-family: "MTS Text";
   font-weight: 300;
   margin-right: 20px;
+  height: 28px;
+  display: flex;
+  align-items: center;
 }
 
 .job p,
 .role p {
-  margin: 0;
+  margin: auto;
+  line-height: 14px;
 }
 
 .role {
-  padding: 4px 16px;
+  box-sizing: border-box;
+  padding: 0 18px;
   border: 1px solid #a6d3ff;
   border-radius: 8px;
   font-family: "MTS Text";
   font-weight: 300;
   color: #0070ff;
+  height: 28px;
+  display: flex;
+  align-items: center;
 }
 
 .button {
