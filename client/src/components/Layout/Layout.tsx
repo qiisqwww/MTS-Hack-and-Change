@@ -39,7 +39,7 @@ export default function Layout({ setPopup }: layoutProps) {
           <List
             className={styles.list}
             pagination={{ pageSize: 3, align: "center" }}
-            dataSource={cards || []}
+            dataSource={cards ? [cards] : []}
             split={false}
             renderItem={(item) => (
               <List.Item key={"sss"}>
