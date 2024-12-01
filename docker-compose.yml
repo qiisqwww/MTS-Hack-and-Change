@@ -27,7 +27,7 @@ services:
       dockerfile: ./Dockerfile
       context: ./backend-for-frontend
     env_file:
-      - ./backend-for-frontend/.backend-for-frontend.env
+      - ./environment/.backend-for-frontend.env
     healthcheck:
       test: [ "CMD-SHELL", "curl -f http://localhost:8080/api/healthcheck || exit 1" ]
       interval: 10s
@@ -41,7 +41,7 @@ services:
       dockerfile: ./Dockerfile
       context: ./employees
     env_file:
-      - ./employees/.employees.env
+      - ./environment/.employees.env
     depends_on:
       postgres_employees:
         condition: service_healthy
@@ -58,7 +58,7 @@ services:
   postgres_employees:
     image: postgres:13
     env_file:
-      - ./.database.env
+      - ./environment/.database.env
     volumes:
       - db_data:/var/lib/postgresql/data
     restart: always
@@ -75,7 +75,7 @@ services:
       dockerfile: ./Dockerfile
       context: ./ml-searcher
     env_file:
-      - ./ml-searcher/.ml-searcher.env
+      - ./environment/.ml-searcher.env
     healthcheck:
       test: [ "CMD-SHELL", "curl -f http://localhost:8081/api/healthcheck || exit 1" ]
       interval: 10s
