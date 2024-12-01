@@ -1,0 +1,357 @@
+@font-face {
+  font-family: "MTS Compact";
+  font-style: normal;
+  font-weight: 300;
+  src: local("MTS Compact"),
+    url("assets/fonts/mts_shrift/Web/Compact/MTSCompact-Regular/MTSCompact-Regular.woff2")
+      format("woff2"),
+    url("assets/fonts/mts_shrift/Web/Compact/MTSCompact-Regular/MTSCompact-Regular.woff")
+      format("woff"),
+    url("assets/fonts/mts_shrift/Web/Compact/TTF/MTSCompact-Regular.ttf")
+      format("ttf"),
+    url("assets/fonts/mts_shrift/Web/Compact/MTSCompact-Regular/MTSCompact-Regular.eot")
+      format("eot");
+}
+
+@font-face {
+  font-family: "MTS Compact";
+  font-style: normal;
+  font-weight: normal;
+  src: local("MTS Compact"),
+    url("assets/fonts/mts_shrift/Web/Compact/MTSCompact-Medium/MTSCompact-Medium.woff2")
+      format("woff2"),
+    url("assets/fonts/mts_shrift/Web/Compact/MTSCompact-Medium/MTSCompact-Medium.woff")
+      format("woff"),
+    url("assets/fonts/mts_shrift/Web/Compact/TTF/MTSCompact-Medium.ttf")
+      format("ttf"),
+    url("assets/fonts/mts_shrift/Web/Compact/MTSCompact-Medium/MTSCompact-Medium.eot")
+      format("eot");
+}
+
+@font-face {
+  font-family: "MTS Compact";
+  font-style: normal;
+  font-weight: Bold;
+  src: local("MTS Compact"),
+    url("assets/fonts/mts_shrift/Web/Compact/MTSCompact-Bold/MTSCompact-Bold.woff2")
+      format("woff2"),
+    url("assets/fonts/mts_shrift/Web/Compact/MTSCompact-Bold/MTSCompact-Bold.woff")
+      format("woff"),
+    url("assets/fonts/mts_shrift/Web/Compact/TTF/MTSCompact-Bold.ttf")
+      format("ttf"),
+    url("assets/fonts/mts_shrift/Web/Compact/MTSCompact-Bold/MTSCompact-Bold.eot")
+      format("eot");
+}
+
+@font-face {
+  font-family: "MTS Compact";
+  font-style: normal;
+  font-weight: 900;
+  src: local("MTS Compact"),
+    url("assets/fonts/mts_shrift/Web/Compact/MTSCompact-Black/MTSCompact-Black.woff2")
+      format("woff2"),
+    url("assets/fonts/mts_shrift/Web/Compact/MTSCompact-Blackd/MTSCompact-Black.woff")
+      format("woff"),
+    url("assets/fonts/mts_shrift/Web/Compact/TTF/MTSCompact-Black.ttf")
+      format("ttf"),
+    url("assets/fonts/mts_shrift/Web/Compact/MTSCompact-Black/MTSCompact-Black.eot")
+      format("eot");
+}
+
+@font-face {
+  font-family: "MTS Extended";
+  font-style: normal;
+  font-weight: 300;
+  src: local("MTS Extended"),
+    url("assets/fonts/mts_shrift/Web/Extended/MTSExtended-Regular/MTSExtended-Regular.woff2")
+      format("woff2"),
+    url("assets/fonts/mts_shrift/Web/Extended/MTSExtended-Regular/MTSExtended-Regular.woff")
+      format("woff"),
+    url("assets/fonts/mts_shrift/Web/Extended/TTF/MTSExtended-Regular.ttf")
+      format("ttf"),
+    url("assets/fonts/mts_shrift/Web/Extended/MTSExtended-Regular/MTSExtended-Regular.eot")
+      format("eot");
+}
+
+@font-face {
+  font-family: "MTS Extended";
+  font-style: normal;
+  font-weight: normal;
+  src: local("MTS Extended"),
+    url("assets/fonts/mts_shrift/Web/Extended/MTSExtended-Medium/MTSExtended-Medium.woff2")
+      format("woff2"),
+    url("assets/fonts/mts_shrift/Web/Extended/MTSExtended-Medium/MTSExtended-Medium.woff")
+      format("woff"),
+    url("assets/fonts/mts_shrift/Web/Extended/TTF/MTSExtended-Medium.ttf")
+      format("ttf"),
+    url("assets/fonts/mts_shrift/Web/Extended/MTSExtended-Medium/MTSExtended-Medium.eot")
+      format("eot");
+}
+
+@font-face {
+  font-family: "MTS Extended";
+  font-style: normal;
+  font-weight: bold;
+  src: local("MTS Extended"),
+    url("assets/fonts/mts_shrift/Web/Extended/MTSExtended-Bold/MTSExtended-Bold.woff2")
+      format("woff2"),
+    url("assets/fonts/mts_shrift/Web/Extended/MTSExtended-Bold/MTSExtended-Bold.woff")
+      format("woff"),
+    url("assets/fonts/mts_shrift/Web/Extended/TTF/MTSExtended-Bold.ttf")
+      format("ttf"),
+    url("assets/fonts/mts_shrift/Web/Extended/MTSExtended-Bold/MTSExtended-Bold.eot")
+      format("eot");
+}
+
+@font-face {
+  font-family: "MTS Extended";
+  font-style: normal;
+  font-weight: 900;
+  src: local("MTS Compact"),
+    url("assets/fonts/mts_shrift/Web/Extended/MTSExtended-Black/MTSExtended-Black.woff2")
+      format("woff2"),
+    url("assets/fonts/mts_shrift/Web/Extended/MTSExtended-Black/MTSExtended-Black.woff")
+      format("woff"),
+    url("assets/fonts/mts_shrift/Web/Extended/TTF/MTSExtended-Black.ttf")
+      format("ttf"),
+    url("assets/fonts/mts_shrift/Web/Extended/MTSExtended-Black/MTSExtended-Black.eot")
+      format("eot");
+}
+
+@font-face {
+  font-family: "MTS Text";
+  font-style: normal;
+  font-weight: 300;
+  src: local("MTS Text"),
+    url("assets/fonts/mts_shrift/Web/Text/MTSText-Regular/MTSText-Regular.woff2")
+      format("woff2"),
+    url("assets/fonts/mts_shrift/Web/Text/MTSEText-Regular/MTSText-Regular.woff")
+      format("woff"),
+    url("assets/fonts/mts_shrift/Web/Text/TTF/MTSText-Regular.ttf")
+      format("ttf"),
+    url("assets/fonts/mts_shrift/Web/Text/MTSText-Regular/MTSText-Regular.eot")
+      format("eot");
+}
+
+@font-face {
+  font-family: "MTS Text";
+  font-style: normal;
+  font-weight: normal;
+  src: local("MTS Text"),
+    url("assets/fonts/mts_shrift/Web/Text/MTSText-Medium/MTSText-Medium.woff2")
+      format("woff2"),
+    url("assets/fonts/mts_shrift/Web/Text/MTSEText-Medium/MTSText-Medium.woff")
+      format("woff"),
+    url("assets/fonts/mts_shrift/Web/Text/TTF/MTSText-Medium.ttf") format("ttf"),
+    url("assets/fonts/mts_shrift/Web/Text/MTSText-Medium/MTSText-Medium.eot")
+      format("eot");
+}
+
+@font-face {
+  font-family: "MTS Text";
+  font-style: normal;
+  font-weight: bold;
+  src: local("MTS Extended"),
+    url("assets/fonts/mts_shrift/Web/Text/MTSText-Bold/MTSText-Bold.woff2")
+      format("woff2"),
+    url("assets/fonts/mts_shrift/Web/Text/MTSEText-Bold/MTSText-Bold.woff")
+      format("woff"),
+    url("assets/fonts/mts_shrift/Web/Text/TTF/MTSText-Bold.ttf") format("ttf"),
+    url("assets/fonts/mts_shrift/Web/Text/MTSText-Bold/MTSText-Bold.eot")
+      format("eot");
+}
+
+@font-face {
+  font-family: "MTS Text";
+  font-style: normal;
+  font-weight: 900;
+  src: local("MTS Text"),
+    url("assets/fonts/mts_shrift/Web/Text/MTSText-Black/MTSText-Black.woff2")
+      format("woff2"),
+    url("assets/fonts/mts_shrift/Web/Text/MTSEText-Black/MTSText-Black.woff")
+      format("woff"),
+    url("assets/fonts/mts_shrift/Web/Text/TTF/MTSText-Black.ttf") format("ttf"),
+    url("assets/fonts/mts_shrift/Web/Text/MTSText-Black/MTSText-Black.eot")
+      format("eot");
+}
+
+@font-face {
+  font-family: "MTS UltraExtended";
+  font-style: normal;
+  font-weight: 900;
+  src: local("MTS UltraExtended"),
+    url("assets/fonts/mts_shrift/Web/UltraExtended/MTSUltraExtended-Black/MTSUltraExtended-Black.woff2")
+      format("woff2"),
+    url("assets/fonts/mts_shrift/Web/UltraExtended/MTSEUltraExtended-Black/MTSUltraExtended-Black.woff")
+      format("woff"),
+    url("assets/fonts/mts_shrift/Web/UltraExtended/TTF/MTSUltraExtended-Black.ttf")
+      format("ttf"),
+    url("assets/fonts/mts_shrift/Web/UltraExtended/MTSUltraExtended-Black/MTSUltraExtended-Black.eot")
+      format("eot");
+}
+
+@font-face {
+  font-family: "MTS UltraExtended";
+  font-style: normal;
+  font-weight: bold;
+  src: local("MTS UltraExtended"),
+    url("assets/fonts/mts_shrift/Web/UltraExtended/MTSUltraExtended-Bold/MTSUltraExtended-Bold.woff2")
+      format("woff2"),
+    url("assets/fonts/mts_shrift/Web/UltraExtended/MTSEUltraExtended-Bold/MTSUltraExtended-Bold.woff")
+      format("woff"),
+    url("assets/fonts/mts_shrift/Web/UltraExtended/TTF/MTSUltraExtended-Bold.ttf")
+      format("ttf"),
+    url("assets/fonts/mts_shrift/Web/UltraExtended/MTSUltraExtended-Bold/MTSUltraExtended-Bold.eot")
+      format("eot");
+}
+
+@font-face {
+  font-family: "MTS UltraExtended";
+  font-style: normal;
+  font-weight: normal;
+  src: local("MTS UltraExtended"),
+    url("assets/fonts/mts_shrift/Web/UltraExtended/MTSUltraExtended-Regular/MTSUltraExtended-Regular.woff2")
+      format("woff2"),
+    url("assets/fonts/mts_shrift/Web/UltraExtended/MTSEUltraExtended-Regular/MTSUltraExtended-Regular.woff")
+      format("woff"),
+    url("assets/fonts/mts_shrift/Web/UltraExtended/TTF/MTSUltraExtended-Regular.ttf")
+      format("ttf"),
+    url("assets/fonts/mts_shrift/Web/UltraExtended/MTSUltraExtended-Regular/MTSUltraExtended-Regular.eot")
+      format("eot");
+}
+
+@font-face {
+  font-family: "MTS UltraExtended";
+  font-style: normal;
+  font-weight: 300;
+  src: local("MTS UltraExtended"),
+    url("assets/fonts/mts_shrift/Web/UltraExtended/MTSUltraExtended-Light/MTSUltraExtended-Light.woff2")
+      format("woff2"),
+    url("assets/fonts/mts_shrift/Web/UltraExtended/MTSEUltraExtended-Light/MTSUltraExtended-Light.woff")
+      format("woff"),
+    url("assets/fonts/mts_shrift/Web/UltraExtended/TTF/MTSUltraExtended-Light.ttf")
+      format("ttf"),
+    url("assets/fonts/mts_shrift/Web/UltraExtended/MTSUltraExtended-Light/MTSUltraExtended-Light.eot")
+      format("eot");
+}
+
+@font-face {
+  font-family: "MTS Wide";
+  font-style: normal;
+  font-weight: 200;
+  src: local("MTS Wide"),
+    url("assets/fonts/mts_shrift/Web/Wide/MTSWide-Light/MTSWide-Light.woff2")
+      format("woff2"),
+    url("assets/fonts/mts_shrift/Web/Wide/MTSEWide-Light/MTSWide-Light.woff")
+      format("woff"),
+    url("assets/fonts/mts_shrift/Web/Wide/TTF/MTSWide-Light.ttf") format("ttf"),
+    url("assets/fonts/mts_shrift/Web/Wide/MTSWide-Light/MTSWide-Light.eot")
+      format("eot");
+}
+
+@font-face {
+  font-family: "MTS Wide";
+  font-style: normal;
+  font-weight: 300;
+  src: local("MTS Wide"),
+    url("assets/fonts/mts_shrift/Web/Wide/MTSWide-Regular/MTSWide-Regular.woff2")
+      format("woff2"),
+    url("assets/fonts/mts_shrift/Web/Wide/MTSEWide-Regular/MTSWide-Regular.woff")
+      format("woff"),
+    url("assets/fonts/mts_shrift/Web/Wide/TTF/MTSWide-Regular.ttf")
+      format("ttf"),
+    url("assets/fonts/mts_shrift/Web/Wide/MTSWide-Regular/MTSWide-Regular.eot")
+      format("eot");
+}
+
+@font-face {
+  font-family: "MTS Wide";
+  font-style: normal;
+  font-weight: normal;
+  src: local("MTS Wide"),
+    url("assets/fonts/mts_shrift/Web/Wide/MTSWide-Medium/MTSWide-Medium.woff2")
+      format("woff2"),
+    url("assets/fonts/mts_shrift/Web/Wide/MTSEWide-Medium/MTSWide-Medium.woff")
+      format("woff"),
+    url("assets/fonts/mts_shrift/Web/Wide/TTF/MTSWide-Medium.ttf") format("ttf"),
+    url("assets/fonts/mts_shrift/Web/Wide/MTSWide-Medium/MTSWide-Medium.eot")
+      format("eot");
+}
+
+@font-face {
+  font-family: "MTS Wide";
+  font-style: normal;
+  font-weight: bold;
+  src: local("MTS Wide"),
+    url("assets/fonts/mts_shrift/Web/Wide/MTSWide-Bold/MTSWide-Bold.woff2")
+      format("woff2"),
+    url("assets/fonts/mts_shrift/Web/Wide/MTSEWide-Bold/MTSWide-Bold.woff")
+      format("woff"),
+    url("assets/fonts/mts_shrift/Web/Wide/TTF/MTSWide-Bold.ttf") format("ttf"),
+    url("assets/fonts/mts_shrift/Web/Wide/MTSWide-Bold/MTSWide-Bold.eot")
+      format("eot");
+}
+
+@font-face {
+  font-family: "MTS Wide";
+  font-style: normal;
+  font-weight: 900;
+  src: local("MTS Wide"),
+    url("assets/fonts/mts_shrift/Web/Wide/MTSWide-Black/MTSWide-Black.woff2")
+      format("woff2"),
+    url("assets/fonts/mts_shrift/Web/Wide/MTSEWide-Black/MTSWide-Black.woff")
+      format("woff"),
+    url("assets/fonts/mts_shrift/Web/Wide/TTF/MTSWide-Black.ttf") format("ttf"),
+    url("assets/fonts/mts_shrift/Web/Wide/MTSWide-Black/MTSWide-Black.eot")
+      format("eot");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  height: 100%;
+}
+
+input {
+  all: unset; /* Сбрасывает все стили по умолчанию */
+}
+
+.ant-pagination-item-active {
+  border-color: #ff0023 !important;
+}
+
+.ant-pagination-item-active a {
+  color: #ff0023 !important; /* Цвет текста в активной кнопке */
+}
+
+.ant-switch-handle {
+  width: 25px !important;
+  height: 25px !important;
+  inset-inline-start: 4px;
+  /* inset-inline-end: 70px !important; */
+}
+
+.ant-switch-handle::before {
+  background-color: #ff0023 !important;
+  /* width: 25px;
+  height: 25px;
+  border-radius: 100% !important; */
+}
+
+.ant-switch {
+  background-color: #fff !important; /* Цвет выключенного фона */
+}
+
+.ant-switch-checked {
+  background-color: #1d2023 !important; /* Цвет фона во включенном состоянии */
+}
+
+html[data-theme="dark"] {
+  --background-color: #1d2023;
+}
+
+html[data-theme="light"] {
+  --background-color: #fff;
+}

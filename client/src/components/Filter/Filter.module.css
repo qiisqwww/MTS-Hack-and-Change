@@ -1,0 +1,52 @@
+.filter {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.section {
+  cursor: pointer;
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  margin: 0;
+  font-size: 17px;
+  font-family: "MTS Text";
+  font-weight: 300;
+}
+
+.input {
+  box-sizing: border-box;
+  background-color: #fff;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px #ccc solid;
+  width: 100%;
+  height: 30px;
+  font-family: "MTS Text";
+  font-weight: 300;
+  padding: 0 10px;
+}
+
+.select {
+  width: 100%;
+  margin-top: 10px;
+  font-family: "MTS Text";
+  font-weight: 300;
+  border-radius: 5px;
+  border: 1px #ccc solid;
+  width: 100%;
+  height: 30px;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+.arrow {
+  transition: 0.3s;
+}

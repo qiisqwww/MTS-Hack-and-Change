@@ -1,0 +1,48 @@
+.filters {
+  width: calc(100% - 40px);
+  margin-top: 35px;
+}
+
+.list {
+  margin-top: 40px;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.submit {
+  transition: 0.3s;
+  width: 100%;
+  border: none;
+  color: #fff;
+  background-color: #ff0032;
+  font-family: "MTS Wide";
+  font-weight: normal;
+  font-size: 12px;
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background-color: #ff0032cc;
+}
+
+.reset {
+  transition: 0.3s;
+  width: 100%;
+  border: none;
+  color: #fff;
+  background-color: #969fa8;
+  font-family: "MTS Wide";
+  font-weight: normal;
+  font-size: 12px;
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.reset:hover {
+  background-color: #1d2023d8;
+}
