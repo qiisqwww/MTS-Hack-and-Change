@@ -34,7 +34,7 @@ export default function Card({ setPopup, card }: CardProps) {
 
   const handleSub = async () => {
     try {
-      const response = await axios.get<IPreson>(
+      const response = await axios.get<IPreson[]>(
         `${import.meta.env.VITE_API_URL}/subs`,
         {
           params: {

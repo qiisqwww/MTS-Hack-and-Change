@@ -1,12 +1,12 @@
 .footer {
   position: relative;
-  border-top: 1px #1d2023 solid;
+  border-top: 1px var(--border) solid;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 30px;
   height: 170px;
-  background-color: #fff;
+  background-color: var(--background-color);
   z-index: 4;
 }
 
@@ -40,5 +40,5 @@
 }
 
 .icon {
-  margin-bottom: 10px;
+  filter: var(--text-color);
 }

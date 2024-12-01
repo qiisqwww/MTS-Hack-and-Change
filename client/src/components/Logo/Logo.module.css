@@ -13,7 +13,7 @@
   margin-left: 8px;
   font-family: "MTS Wide";
   font-weight: 500;
-  color: #1d2023;
+  color: var(--text-color);
   font-size: 17px;
 }
 

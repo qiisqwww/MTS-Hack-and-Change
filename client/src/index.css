@@ -320,6 +320,7 @@ input {
 
 .ant-pagination-item-active {
   border-color: #ff0023 !important;
+  background-color: var(--background-color) !important;
 }
 
 .ant-pagination-item-active a {
@@ -335,9 +336,6 @@ input {
 
 .ant-switch-handle::before {
   background-color: #ff0023 !important;
-  /* width: 25px;
-  height: 25px;
-  border-radius: 100% !important; */
 }
 
 .ant-switch {
@@ -350,8 +348,24 @@ input {
 
 html[data-theme="dark"] {
   --background-color: #1d2023;
+  --left-board: #23272c;
+  --text-color: #fff;
+  --border: #fff;
+  --button: #fff;
 }
 
 html[data-theme="light"] {
   --background-color: #fff;
+  --left-board: #f2f3f7;
+  --text-color: #000;
+  --border: #969fa8;
+  --button: #1d2023;
+}
+
+p,
+h1,
+h2,
+h3,
+h4 {
+  color: var(--text-color);
 }
