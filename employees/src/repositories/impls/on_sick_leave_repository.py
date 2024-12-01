@@ -32,3 +32,7 @@ class OnSickLeaveRepository(Repository, IOnSickLeaveRepository):
             date_from=on_sick_leave.date_from,
             date_to=on_sick_leave.date_to
         )
+
+    async def insert_prefill_on_sick_leaves(self, on_sick_leaves: list[OnSickLeave]) -> None:
+        self._session.add_all(on_sick_leaves)
+        await self._session.commit()

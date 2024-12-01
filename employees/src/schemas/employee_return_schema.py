@@ -2,7 +2,6 @@ from datetime import date
 
 from pydantic import BaseModel, EmailStr
 
-from src.enums import SexEnum
 from src.schemas.on_leave_schema import OnLeaveSchema
 from src.schemas.on_sick_leave_schema import OnSickLeaveSchema
 

@@ -1,12 +1,15 @@
 import json
+from datetime import datetime
 
 from src.repositories.impls import (
     RoleRepository,
     PostRepository,
     DepartmentRepository,
-    EmployeeRepository
+    EmployeeRepository,
+    OnLeaveRepository,
+    OnSickLeaveRepository
 )
-from src.entities.models import Role, Post, Employee, Department
+from src.entities.models import Role, Post, Employee, Department, OnLeave, OnSickLeave
 from src.database import async_session_maker
 
 __all__ = [
@@ -24,6 +27,8 @@ async def prefill_database() -> None:
         await prefill_posts(PostRepository(session))
         await prefill_departments(DepartmentRepository(session))
         await prefill_employees(EmployeeRepository(session))
+        await prefill_on_leaves(OnLeaveRepository(session))
+        await prefill_on_sick_leaves(OnSickLeaveRepository(session))
 
 
 async def db_already_filled(role_repository: RoleRepository) -> bool:
@@ -73,9 +78,45 @@ async def prefill_employees(employee_repository: EmployeeRepository) -> None:
                 last_name=emp["last_name"],
                 phone_number=emp["phone_number"],
                 city=emp["city"],
+                birthdate=datetime.strptime(emp["birthdate"], "%Y.%m.%d") if emp.get("birthdate") else None,
                 address=emp["address"],
                 email="some_email@mts.ru",
+                sex=emp["sex"],
                 boss_id=int(emp["boss_id"]) if emp["boss_id"] else None
             ))
 
     await employee_repository.insert_prefill_employees(employees)
+
+
+async def prefill_on_leaves(on_leave_repository: OnLeaveRepository) -> None:
+    on_leaves = []
+    with open("/app/prefill/on_leaves.json", "r") as file:
+        on_leave_data = json.load(file)
+        for on_leave in on_leave_data:
+            on_leaves.append(OnLeave(
+                id=on_leave["id"],
+                employee_id=on_leave["employee_id"],
+                date_from=datetime.strptime(on_leave["date_from"], "%Y.%m.%d")
+                if on_leave.get("date_from") else None,
+                date_to=datetime.strptime(on_leave["date_to"], "%Y.%m.%d")
+                if on_leave.get("date_to") else None
+            ))
+
+    await on_leave_repository.insert_prefill_on_leaves(on_leaves)
+
+
+async def prefill_on_sick_leaves(on_sick_leave_repository: OnSickLeaveRepository) -> None:
+    on_sick_leaves = []
+    with open("/app/prefill/on_sick_leaves.json", "r") as file:
+        on_sick_leave_data = json.load(file)
+        for on_sick_leave in on_sick_leave_data:
+            on_sick_leaves.append(OnSickLeave(
+                id=on_sick_leave["id"],
+                employee_id=on_sick_leave["employee_id"],
+                date_from=datetime.strptime(on_sick_leave["date_from"], "%Y.%m.%d")
+                if on_sick_leave.get("date_from") else None,
+                date_to=datetime.strptime(on_sick_leave["date_to"], "%Y.%m.%d")
+                if on_sick_leave.get("date_to") else None
+            ))
+
+    await on_sick_leave_repository.insert_prefill_on_sick_leaves(on_sick_leaves)
