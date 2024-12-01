@@ -105,8 +105,12 @@ class EmployeesService:
 
         return employees_schema
 
-    async def find_employee_by_id(self, employee_id: int) -> EmployeeReturnSchema:
+    async def find_employee_by_id(self, employee_id: int) -> EmployeeReturnSchema | None:
         employee = await self._employee_repository.get_employee_by_id(employee_id)
+
+        if employee is None:
+            return None
+
         employee_post = await self._post_repository.get_post_by_id(employee.post_id)
         employee_department = await self._department_repository.get_department_by_id(employee.department_id)
         on_sick_leave = await self._on_sick_leave_repository.get_on_sick_leave(employee.id)
