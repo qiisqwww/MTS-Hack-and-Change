@@ -28,7 +28,7 @@ class OnSickLeaveRepository(Repository, IOnSickLeaveRepository):
         if on_sick_leave is None:
             return None
 
-        return await OnSickLeaveSchema(
+        return OnSickLeaveSchema(
             date_from=on_sick_leave.date_from,
             date_to=on_sick_leave.date_to
         )
