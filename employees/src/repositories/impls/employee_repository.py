@@ -54,7 +54,6 @@ class EmployeeRepository(Repository, IEmployeeRepository):
 
             if value is not None:
                 conditions.append(getattr(self._model, field) == value)
-                print(field, value)
 
         if conditions:
             stmt = stmt.where(and_(*conditions))

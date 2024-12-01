@@ -26,7 +26,7 @@ class SubServicesManagerService:
         filtered_employees = [EmployeeTempSchema(**emp) for emp in filtered_employees_raw["filtered_employees"]]
 
         if prompt is not None:
-            matching_ids = set(await self._ml_searcher_api.filter_by_prompt(filtered_employees, prompt))
+            matching_ids = set(await self._ml_searcher_api.filter_by_prompt(prompt, filtered_employees))
 
             filtered_employees_from_ml = []
             for emp in filtered_employees:
@@ -34,6 +34,7 @@ class SubServicesManagerService:
                     filtered_employees_from_ml.append(emp)
 
             filtered_employees = filtered_employees_from_ml
+
 
         return filtered_employees
 

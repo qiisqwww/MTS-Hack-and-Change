@@ -9,5 +9,5 @@ __all__ = [
 
 class IMLSearcherApi(ABC):
     @abstractmethod
-    async def filter_by_prompt(self, employees: list[EmployeeTempSchema], prompt: str) -> list[int]:
+    async def filter_by_prompt(self, prompt: str, employees: list[EmployeeTempSchema]) -> list[int]:
         ...

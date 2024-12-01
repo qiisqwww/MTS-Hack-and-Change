@@ -8,5 +8,5 @@ __all__ = [
 
 
 class OnLeaveSchema(BaseModel):
-    date_from: date
-    date_to: date
+    date_from: str
+    date_to: str

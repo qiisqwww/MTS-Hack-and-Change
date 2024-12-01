@@ -71,13 +71,13 @@ class EmployeesService:
         employees_schema = []
         for employee in employees:
             on_sick_leave, on_leave = None, None
-            if employee.sick_leaves:
+            if employee.sick_leaves is not None:
                 on_sick_leave = OnSickLeaveSchema(
                     date_from=employee.sick_leaves.date_from,
-                    date_to=employee.leaves.date_to
+                    date_to=employee.sick_leaves.date_to
                 )
 
-            if employee.leaves:
+            if employee.leaves is not None:
                 on_leave = OnLeaveSchema(
                     date_from=employee.leaves.date_from,
                     date_to=employee.leaves.date_to

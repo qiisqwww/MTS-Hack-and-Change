@@ -17,11 +17,12 @@ class MLSearcherApi(IMLSearcherApi):
                 response = await session.post(
                     self._ML_SEARCHER_URL + "/api/filter",
                     json={
-                        "filtered_employees": employees,
+                        "filtered_employees": [emp.dict() for emp in employees],
                         "prompt": prompt
                     }
                 )
-            except Exception:
+            except Exception as e:
+                print(e)
                 return []
 
             if response.status != 200:
