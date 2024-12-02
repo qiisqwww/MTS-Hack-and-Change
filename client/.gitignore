@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 
 mts_logo3.zip
+.vite
