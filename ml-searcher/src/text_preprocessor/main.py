@@ -9,7 +9,6 @@ import nltk
 nltk.download('stopwords')
 nltk.download('punkt')
 
-# Вспомогательные функции
 def is_email(text):
     email_pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
     return re.match(email_pattern, text) is not None
