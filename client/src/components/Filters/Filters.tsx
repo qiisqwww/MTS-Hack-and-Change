@@ -158,40 +158,40 @@ export default function Filters() {
 
   return (
     <div className={styles.filters}>
-      <Title title="КРИТЕРИИ ПОИСКА" />
+      <Title title="SEARCH CRITERIA" />
       <ul className={styles.list}>
         <Filter
-          title="Подразделение №1"
+          title="Department №1"
           isList={true}
           options={departments[1] || []}
           inputRef={(el) => (refs.current["departament1"] = el)}
         />
         <Filter
-          title="Функциональный блок"
+          title="Functional block"
           isList={true}
           options={departments[2] || []}
           inputRef={(el) => (refs.current["departament2"] = el)}
         />
         <Filter
-          title="Подразделение №2"
+          title="Department №2"
           isList={true}
           options={departments[3] || []}
           inputRef={(el) => (refs.current["departament3"] = el)}
         />
         <Filter
-          title="Подразделение №3"
+          title="Department №3"
           isList={true}
           options={departments[4] || []}
           inputRef={(el) => (refs.current["departament4"] = el)}
         />
         <Filter
-          title="Подразделение №4"
+          title="Department №4"
           isList={true}
           options={departments[5] || []}
           inputRef={(el) => (refs.current["departament5"] = el)}
         />
         <Filter
-          title="Должность"
+          title="Post"
           isList={true}
           options={data ? data.posts_and_roles.posts : []}
           inputRef={(el) => (refs.current["post"] = el)}
@@ -203,32 +203,32 @@ export default function Filters() {
           inputRef={(el) => (refs.current["role"] = el)}
         />
         <Filter
-          title="Фамилия"
+          title="Last name"
           isList={false}
           inputRef={(el) => (refs.current["last_name"] = el)}
         />
         <Filter
-          title="Имя"
+          title="Name"
           isList={false}
           inputRef={(el) => (refs.current["first_name"] = el)}
         />
         <Filter
-          title="Телефон"
+          title="Phone"
           isList={false}
           inputRef={(el) => (refs.current["phone"] = el)}
         />
         <Filter
-          title="Город"
+          title="City"
           isList={false}
           inputRef={(el) => (refs.current["city"] = el)}
         />
         <Filter
-          title="Адрес"
+          title="Address"
           isList={false}
           inputRef={(el) => (refs.current["adress"] = el)}
         />
         <Filter
-          title="Почта"
+          title="Email"
           isList={false}
           inputRef={(el) => (refs.current["email"] = el)}
         />
@@ -239,10 +239,10 @@ export default function Filters() {
         />
       </ul>
       <button className={styles.submit} onClick={handleApply}>
-        ИСКАТЬ
+        SEARCH
       </button>
       <button className={styles.reset} onClick={handleReset}>
-        СБРОСИТЬ
+        CLEAR
       </button>
     </div>
   );

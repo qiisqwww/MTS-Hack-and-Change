@@ -30,7 +30,7 @@ export default function Layout({ setPopup }: layoutProps) {
   return (
     <section className={`${styles.layout} ${isSearch ? styles.search : " "}`}>
       <h1 className={`${styles.title} ${isSearch ? styles.hideTitle : " "}`}>
-        ВВЕДИТЕ ОПИСАНИЕ СОТРУДНИКА
+        ENTER A DESCRIPTION OF THE EMPLOYEE
       </h1>
 
       <Input isSearch={isSearch} setIsSearch={setIsSearch} />

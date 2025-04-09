@@ -51,8 +51,8 @@ export const Popup = forwardRef(
                 {master?.on_sick_leave_info ? (
                   <li className={styles.sick}>
                     <span>
-                      На больничном с{" "}
-                      {String(master?.on_sick_leave_info.date_from)} до{" "}
+                      On sick leave{" "}
+                      {String(master?.on_sick_leave_info.date_from)} from{" "}
                       {String(master?.on_sick_leave_info.date_to)}
                     </span>
                   </li>
@@ -62,7 +62,7 @@ export const Popup = forwardRef(
                 {master?.on_leave_info ? (
                   <li className={styles.sick}>
                     <span>
-                      В отпуске с {String(master?.on_leave_info.date_from)} до{" "}
+                      On leave {String(master?.on_leave_info.date_from)} to{" "}
                       {String(master?.on_leave_info.date_to)}
                     </span>
                   </li>
@@ -90,7 +90,7 @@ export const Popup = forwardRef(
           </div>
           <div>
             <div className={styles.grid}>
-              <h4 className={styles.point}>Контакты</h4>
+              <h4 className={styles.point}>Phone</h4>
               <div className={styles.displayFlex}>
                 <p className={styles.text}>{master?.phone_number}</p>
                 <p className={styles.text}>{master?.email}</p>
@@ -98,21 +98,21 @@ export const Popup = forwardRef(
             </div>
             <hr className={styles.line}></hr>
             <div className={styles.grid}>
-              <h4 className={styles.point}>Подразделения</h4>
+              <h4 className={styles.point}>Department</h4>
               <div className={styles.displayFlex}>
                 <p className={styles.text}>{master?.department_name}</p>
               </div>
             </div>
             <hr className={styles.line}></hr>
             <div className={styles.grid}>
-              <h4 className={styles.point}>Функц. блок</h4>
+              <h4 className={styles.point}>Func. block</h4>
               <div className={styles.displayFlex}>
-                <p className={styles.text}>Корпоративный блок</p>
+                <p className={styles.text}>Corp. block</p>
               </div>
             </div>
             <hr className={styles.line}></hr>
             <div className={styles.grid}>
-              <h4 className={styles.point}>Адрес офиса</h4>
+              <h4 className={styles.point}>Address</h4>
               <div className={styles.displayFlex}>
                 <p className={styles.text}>{master?.address}</p>
               </div>
@@ -120,12 +120,12 @@ export const Popup = forwardRef(
 
             <hr className={styles.line}></hr>
             <div className={styles.grid}>
-              <h4 className={styles.point}>О себе</h4>
+              <h4 className={styles.point}>About</h4>
               <div className={styles.displayFlex}>
                 <p className={styles.text}>
-                  Чилловый парень — любит не спать два дня из-за хакатона,
-                  потому что он чилловый парень, любит гулять и тусить с
-                  друзьями.
+                  Chill guy — likes not to sleep for two days because of the hackathon,
+                  Because he's a chill guy, likes to go out and hang out with
+                  friends.
                 </p>
               </div>
             </div>
@@ -137,7 +137,7 @@ export const Popup = forwardRef(
                   handleMaster();
                 }}
               >
-                Руководитель
+                Header
               </button>
             )}
           </div>

@@ -6,9 +6,9 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.contacts}>
         <p>
-          MVP сервис разработанный командой ChillGuys для трека "Web/DA: Сервис
-          визуализации организационной структуры от МТС" от хакатона "Hack &
-          Change от Changellenge". Символика была взята с сайта moskva.mts.ru
+            MVP is a service developed by the ChillGuys team for the track "Web/DA: Service
+            visualizations of the organizational structure from MTS" from the hackathon "Hack &
+            Change from Changellenge". The symbols were taken from the website moskva.mts.ru
         </p>
         <p>©ChillGuys, 2024</p>
       </div>
