@@ -60,7 +60,7 @@ export default function Filter({
           <input
             ref={inputRef as React.Ref<HTMLInputElement>}
             className={styles.input}
-            placeholder="Введите данные"
+            placeholder="Input data"
           />
         )}
       </motion.div>

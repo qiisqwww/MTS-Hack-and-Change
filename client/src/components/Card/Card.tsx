@@ -76,11 +76,11 @@ export default function Card({ setPopup, card }: CardProps) {
             {card.first_name} {card.last_name}
           </h2>
           <h3 className={styles.age}>
-            {age} года
+            {age} y.o
             {card.on_sick_leave_info ? (
               <li className={styles.sick}>
                 <span>
-                  На больничном с {String(card.on_sick_leave_info.date_from)} до{" "}
+                  On sick leave from {String(card.on_sick_leave_info.date_from)} to{" "}
                   {String(card.on_sick_leave_info.date_to)}
                 </span>
               </li>
@@ -90,7 +90,7 @@ export default function Card({ setPopup, card }: CardProps) {
             {card.on_leave_info ? (
               <li className={styles.sick}>
                 <span>
-                  В отпуске с {String(card.on_leave_info.date_from)} до{" "}
+                  On leave from {String(card.on_leave_info.date_from)} to{" "}
                   {String(card.on_leave_info.date_to)}
                 </span>
               </li>
@@ -114,12 +114,12 @@ export default function Card({ setPopup, card }: CardProps) {
             setPopup(true);
           }}
         >
-          ПОДРОБНЕЕ
+          MORE
         </button>
       </div>
       <div>
         <div className={styles.grid}>
-          <h4 className={styles.point}>Контакты</h4>
+          <h4 className={styles.point}>Contact</h4>
           <div className={styles.displayFlex}>
             <p className={styles.text}>{card.phone_number}</p>
             <p className={styles.text}>{card.email}</p>
@@ -127,21 +127,21 @@ export default function Card({ setPopup, card }: CardProps) {
         </div>
         <hr className={styles.line}></hr>
         <div className={styles.grid}>
-          <h4 className={styles.point}>Подразделения</h4>
+          <h4 className={styles.point}>Dep.</h4>
           <div className={styles.displayFlex}>
             <p className={styles.text}>{card.department_name}</p>
           </div>
         </div>
         <hr className={styles.line}></hr>
         <div className={styles.grid}>
-          <h4 className={styles.point}>Функц. блок</h4>
+          <h4 className={styles.point}>Func. bloc</h4>
           <div className={styles.displayFlex}>
-            <p className={styles.text}>Корпоративный блок</p>
+            <p className={styles.text}>Corp. block</p>
           </div>
         </div>
         <hr className={styles.line}></hr>
         <div className={styles.grid}>
-          <h4 className={styles.point}>Адрес офиса</h4>
+          <h4 className={styles.point}>Address</h4>
           <div className={styles.displayFlex}>
             <p className={styles.text}>{card.address}</p>
           </div>
@@ -156,7 +156,7 @@ export default function Card({ setPopup, card }: CardProps) {
                 setPopup(true);
               }}
             >
-              Руководитель
+              Header
             </button>
           )}
 
@@ -166,7 +166,7 @@ export default function Card({ setPopup, card }: CardProps) {
               handleSub();
             }}
           >
-            Подчиненные
+            Staff
           </button>
         </div>
         {/* <hr className={styles.line}></hr>/ */}
