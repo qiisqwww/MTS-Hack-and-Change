@@ -7,8 +7,8 @@ services:
         condition: service_completed_successfully
       employees:
         condition: service_healthy
-      ml-searcher:
-        condition: service_healthy
+#      ml-searcher:
+#        condition: service_healthy
       backend-for-frontend:
         condition: service_healthy
     build:
